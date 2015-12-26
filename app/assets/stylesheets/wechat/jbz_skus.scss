@@ -1,0 +1,44 @@
+// Place all the styles related to the wechat/jbz_skus controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.details {
+  h4 {
+    margin-top: 0px;
+    font-size: 1em;
+  }
+
+  p {
+    font-size: 0.8em;
+    margin-bottom: 0px;
+  }
+  hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+.wechat-sku {
+  p {
+    font-size: 0.8em;
+    margin-bottom: 0px;
+  }
+}
+
+.panel-title {
+  a {
+    text-decoration: none;
+  }
+  a:link {
+    text-decoration: none;
+  }
+  a:visited {
+    text-decoration: none;
+  }
+  a:active {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}

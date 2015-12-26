@@ -1,0 +1,23 @@
+// Place all the styles related to the wechat/board controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  padding-bottom: 70px;
+}
+
+.board-sub-corp {
+  font-size: 0.8em;
+  color: #666;
+  background-color: #eee;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  text-align: center;
+}
+
+.price {
+  font-size: 0.8em;
+  .original-price {
+    text-decoration: line-through;
+  }
+}

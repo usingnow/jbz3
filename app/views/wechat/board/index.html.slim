@@ -1,0 +1,45 @@
+.container
+  .row
+    = image_tag 'bar.png', width: '100%'
+
+  .row
+    / .col-xs-12.col-sm-12
+    = bootstrap_flash
+    p.board-sub-corp 本活动计划由上海金保证财富管理有限公司提供
+
+  - @jbz_skus.each do |sku|
+    .row
+      .col-xs-3.col-sm-3
+        = link_to wechat_jbz_sku_path(sku.id) do
+          = image_tag 'insurance.png', width: '100%'
+      .col-xs-9.col-sm-9
+        p = link_to sku.title, wechat_jbz_sku_path(sku.id)
+        .row.price
+          .col-xs-6.col-sm-6
+            span.original-price.text-muted
+              |原价
+              = sku.original_price
+              |元起
+          .col-xs-6.col-sm-6
+            span.reward.text-danger 
+              |积分
+              = sku.reward
+              |起
+    hr
+
+.navbar.navbar-default.navbar-fixed-bottom
+  .container
+    .row
+      .col-xs-6.col-sm-6
+        a.btn.btn-primary.navbar-btn.btn-block 
+          =fa_icon 'file-text-o'
+          ' 
+          |产品
+      .col-xs-6.col-sm-6
+        a.btn.btn-success.navbar-btn.btn-block
+          = fa_icon 'user'
+          ' 
+          |我的
+
+
+
