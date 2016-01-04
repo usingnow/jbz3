@@ -17,8 +17,8 @@
             span.text-danger 102000
             |积分
           p.pull-right
-            |当月最高兑换
-            span.text-danger 2
+            |每年最高兑换
+            span.text-danger 24
             |份
       hr
       .row.text-muted
@@ -69,13 +69,14 @@
             h4.panel-title
               a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
                 Collapsible
-                  span.fa-stack
-                    = fa_icon 'square-o', class: 'fa-stack-2x fa-fx'
-                    = fa_icon 'rmb', class: 'fa-stack-1x fa-fx'
-                  '  
-                  |保障利益
-                  span.pull-right
-                    = fa_icon 'chevron-right', class: 'fa-fx'
+                  .block
+                    span.fa-stack
+                      = fa_icon 'square-o', class: 'fa-stack-2x fa-fx'
+                      = fa_icon 'rmb', class: 'fa-stack-1x fa-fx'
+                    '  
+                    |保障利益
+                    span.pull-right
+                      = fa_icon 'chevron-down', class: 'fa-fx icon-mid'
           #collapseOne.panel-collapse.collapse role="tabpanel" aria-labelledby="headingOne"
             .panel-body
               p = @jbz_sku.product.benifit
@@ -85,13 +86,14 @@
             h4.panel-title
               a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
                 Collapsible
-                  span.fa-stack
-                    = fa_icon 'square-o', class: 'fa-stack-2x fa-fx'
-                    = fa_icon 'list-ol', class: 'fa-stack-1x fa-fw'
-                  ' 
-                  |投保须知
-                  span.pull-right
-                    = fa_icon 'chevron-right', class: 'fa-fx'
+                  .block
+                    span.fa-stack
+                      = fa_icon 'square-o', class: 'fa-stack-2x fa-fx'
+                      = fa_icon 'list-ol', class: 'fa-stack-1x fa-fw'
+                    ' 
+                    |换购须知
+                    span.pull-right
+                      = fa_icon 'chevron-down', class: 'fa-fx icon-mid'
           #collapseTwo.panel-collapse.collapse role="tabpanel" aria-labelledby="headingTwo"
             .panel-body
               p = @jbz_sku.product.acknowledgement
@@ -101,13 +103,14 @@
             h4.panel-title
               a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
                 Collapsible
-                span.fa-stack
-                  = fa_icon 'square-o', class: 'fa-stack-2x fa-fx'
-                  = fa_icon 'line-chart', class: 'fa-stack-1x fa-fw'
-                ' 
-                |产品解读
-                span.pull-right
-                    = fa_icon 'chevron-right', class: 'fa-fx'
+                .block
+                  span.fa-stack
+                    = fa_icon 'square-o', class: 'fa-stack-2x fa-fx'
+                    = fa_icon 'line-chart', class: 'fa-stack-1x fa-fw'
+                  ' 
+                  |产品解读
+                  span.pull-right
+                      = fa_icon 'chevron-down', class: 'fa-fx icon-mid'
           #collapseThree.panel-collapse.collapse role="tabpanel" aria-labelledby="headingThree"
             .panel-body
               p = @jbz_sku.product.recommendation
@@ -115,5 +118,5 @@
   a.btn.btn-info.btn-lg.btn-block
     = fa_icon 'hand-o-up'
     ' 
-    |立即投保
+    |立即换购
 

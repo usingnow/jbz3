@@ -24,13 +24,18 @@ html lang="en"
   .navbar.navbar-default.navbar-fixed-bottom
     .container
       .row
-        .col-xs-6.col-sm-6
-          a.btn.btn-primary.navbar-btn.btn-block 
+        .col-xs-4.col-sm-4
+          = link_to root_path, class: "btn btn-primary navbar-btn btn-block" do 
             =fa_icon 'file-text-o'
             ' 
             |首页
-        .col-xs-6.col-sm-6
+        .col-xs-4.col-sm-4
           a.btn.btn-success.navbar-btn.btn-block
+            = fa_icon 'credit-card'
+            ' 
+            |惠生活
+        .col-xs-4.col-sm-4
+          a.btn.btn-warning.navbar-btn.btn-block
             = fa_icon 'user'
             ' 
-            |我的
+            |我的账户
