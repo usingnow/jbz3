@@ -15,12 +15,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # 用户登出后的界面，默认是 root_path，暂不需要改动，以下代码留作将来使用
   # def after_sign_out_path_for(resource)
-  #   if resource == :employee
-  #     employee_login_path
-  #   else
-  #     root_path
-  #   end
+    # if resource == :user
+    #   root_path
+    # else
+    #   root_path
+    # end
   # end
 
   def configure_permitted_parameters

@@ -8,8 +8,6 @@ Rails.application.routes.draw do
     get 'board/index'
     
     get 'users/login_by_SMS'
-    get 'users/login_by_account'
-
 
     resources :jbz_skus, only: [:show]
   end
