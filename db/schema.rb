@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112141015) do
+ActiveRecord::Schema.define(version: 20160113163446) do
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20160112141015) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "email",                  limit: 255, default: ""
     t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
@@ -61,9 +61,9 @@ ActiveRecord::Schema.define(version: 20160112141015) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.string   "cellphone",              limit: 255
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
