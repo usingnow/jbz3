@@ -1,0 +1,24 @@
+.container
+  .row
+    .col-xs-12.col-sm-12
+      br
+      = bootstrap_flash
+
+      = button_to [:wechat, @cart], method: :delete, data: { confirm: '确定要清空购物车？'}, class: "btn btn-sm btn-danger" do
+        = fa_icon 'trash-o'
+        ' 
+        |清空购物车
+      hr
+
+      - @line_items.each do |line_item|
+        p
+          = line_item.jbz_sku.title
+          ' 
+          '&times
+          ' 
+          = line_item.quantity
+        hr
+      = link_to "#", class: "btn btn-primary btn-lg btn-block" do
+        = fa_icon "file-text-o"
+        ' 
+        | 生成订单
