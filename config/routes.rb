@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     get 'users/login_by_SMS'
 
     resources :jbz_skus, only: [:show]
+
+    resources :carts
+    resources :line_items, only: [:create]
   end
 
     # The priority is based upon order of creation: first created -> highest priority.

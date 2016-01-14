@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(version: 20160113163446) do
   add_index "jbz_skus", ["product_id"], name: "index_jbz_skus_on_product_id", using: :btree
   add_index "jbz_skus", ["ref"], name: "index_jbz_skus_on_ref", using: :btree
 
+  create_table "line_items", force: :cascade do |t|
+    t.integer  "jbz_sku_id", limit: 4
+    t.integer  "cart_id",    limit: 4
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "quantity",   limit: 4, default: 1
+  end
+
+  add_index "line_items", ["cart_id"], name: "index_line_items_on_cart_id", using: :btree
+  add_index "line_items", ["jbz_sku_id"], name: "index_line_items_on_jbz_sku_id", using: :btree
+
   create_table "products", force: :cascade do |t|
     t.string   "name",            limit: 255
     t.text     "description",     limit: 65535
