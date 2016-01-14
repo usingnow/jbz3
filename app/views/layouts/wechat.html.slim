@@ -36,19 +36,47 @@ html lang="en"
             |惠生活
         .col-xs-4.col-sm-4
           .dropup
-            button.btn.btn-warning.navbar-btn.btn-block.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            a.btn.btn-warning.navbar-btn.btn-block.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="downupMenu"
               = fa_icon 'user'
               '
-              |我的账户
+              |我的
+              ' 
               span.caret
-            ul.dropdown-menu.dropdown-menu-right aria-labelledby="dropdownMenuDivider"
+            ul.dropdown-menu.dropdown-menu-right aria-labelledby="dropupMenu"
               - if user_signed_in?
-                li = link_to "退出登录", destroy_user_session_path, method: :delete
-                li ...
+                li 
+                  = link_to wechat_user_center_path do
+                    = fa_icon 'th-large', class: "fa-fw"
+                    ' 
+                    |用户中心
+                    i class='fa fa-chevron-right fa-fw pull-right' style="line-height: 20px;"
+                li.divider role='separator'
+                li 
+                  = link_to destroy_user_session_path, method: :delete do
+                    = fa_icon 'sign-out', class: "fa-fw"
+                    ' 
+                    |注销
+                    i class='fa fa-chevron-right fa-fw pull-right' style="line-height: 20px;"
               - else
-                li = link_to "新用户注册", new_user_registration_path
-                hr
-                li = link_to "短信验证码登录", wechat_users_login_by_SMS_path
-                hr
-                li = link_to "账号密码登陆", new_user_session_path
+                li 
+                  = link_to new_user_registration_path do
+                    = fa_icon 'user-plus', class: 'fa-fw'
+                    ' 
+                    |立即注册
+                    i class='fa fa-chevron-right fa-fw pull-right' style="line-height: 20px;"
+                li.divider role='separator'
+                li
+                  / 此处需要与浦发API对接。
+                  = link_to wechat_users_login_by_SMS_path do
+                    = fa_icon 'commenting', class: 'fa-fw'
+                    ' 
+                    |短信验证
+                    i class='fa fa-chevron-right fa-fw pull-right' style="line-height: 20px;"
+                li.divider role='separator'
+                li
+                  = link_to new_user_session_path do
+                    = fa_icon 'sign-in', class: 'fa-fw'
+                    ' 
+                    |账号登陆
+                    i class='fa fa-chevron-right fa-fw pull-right' style="line-height: 20px;"
               end
