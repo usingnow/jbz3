@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
     resources :carts
     resources :line_items, only: [:create]
+    resources :orders
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
