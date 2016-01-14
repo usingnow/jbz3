@@ -26,7 +26,7 @@ html lang="en"
       .row
         .col-xs-4.col-sm-4
           = link_to root_path, class: "btn btn-primary navbar-btn btn-block" do 
-            =fa_icon 'home'
+            = fa_icon 'home'
             ' 
             |首页
         .col-xs-4.col-sm-4
@@ -35,7 +35,20 @@ html lang="en"
             ' 
             |惠生活
         .col-xs-4.col-sm-4
-          a.btn.btn-warning.navbar-btn.btn-block
-            = fa_icon 'user'
-            ' 
-            |我的账户
+          .dropup
+            button.btn.btn-warning.navbar-btn.btn-block.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+              = fa_icon 'user'
+              '
+              |我的账户
+              span.caret
+            ul.dropdown-menu.dropdown-menu-right aria-labelledby="dropdownMenuDivider"
+              - if user_signed_in?
+                li = link_to "退出登录", destroy_user_session_path, method: :delete
+                li ...
+              - else
+                li = link_to "新用户注册", new_user_registration_path
+                hr
+                li = link_to "短信验证码登录", wechat_users_login_by_SMS_path
+                hr
+                li = link_to "账号密码登陆", new_user_session_path
+              end

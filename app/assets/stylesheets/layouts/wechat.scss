@@ -1,0 +1,24 @@
+.dropdown-menu {
+	margin-left: 8px;
+	margin-right: 8px;
+	border-style: ridge;
+	border-width: 2px;
+  
+  li {
+    height: 50px;
+    text-align: center;
+
+    a {
+    	height: 50px;
+    	line-height: 50px;
+      font-size: 1.2em;
+    }
+  }
+
+  hr {
+  	margin-top: 2px;
+  	margin-bottom: 2px;
+    width: 80%;
+  }
+
+}
