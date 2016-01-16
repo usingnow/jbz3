@@ -1,0 +1,19 @@
+.label.label-warning.pull-right 
+  |订单号 
+  =  order.ref
+.label.label-info.pull-left
+  = order.created_at.to_formatted_s(:db)
+br
+- order.line_items.each do |item|
+  p.wc_sm = item.jbz_sku.title
+  p.wc_sm
+    = item.quantity
+    ' 
+    |&times 
+    = item.jbz_sku.reward
+p.clearfix
+  = link_to root_path, class: 'btn btn-sm btn-success pull-right' do
+    = fa_icon "money"
+    ' 
+    |立即赎回
+hr
