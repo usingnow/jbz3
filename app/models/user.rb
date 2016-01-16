@@ -3,9 +3,11 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   attr_accessor :login
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
+  devise :database_authenticatable, :registerable,:recoverable,
+         :rememberable, :trackable, :validatable, :authentication_keys => [:login]
   
+  validates :cellphone, format: { with: /1(3\d|5[^4]|8[056789])\d{8}/, message: "手机号不正确，请重新输入" }
+
   # 取消 devise 默认 email 必须有值
   def email_required?
     false

@@ -71,9 +71,6 @@ ActiveRecord::Schema.define(version: 20160113165627) do
     t.datetime "updated_at",                    null: false
   end
 
-<<<<<<< HEAD
-  add_foreign_key "line_items", "orders"
-=======
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: ""
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -92,5 +89,5 @@ ActiveRecord::Schema.define(version: 20160113165627) do
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
->>>>>>> 4ccc9dbbb4955981723561dddb5867931f4b3ad7
+  add_foreign_key "line_items", "orders"
 end
