@@ -12,6 +12,7 @@ class Wechat::UsersController < ApplicationController
   # 用户中心首页
   def user_center
     @orders = current_user.orders
+    @user = current_user
   end
 
   private

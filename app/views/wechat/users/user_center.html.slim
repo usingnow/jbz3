@@ -57,4 +57,6 @@ br
                       |立即赎回
               hr
         .tab-pane role="tabpanel" id="profile"
-          = current_user.cellphone
+          = simple_form_for [:wechat, @user], :input_html => { :class => "form-horizontal" } do |b|
+            - b.with_options :disabled => true do |b|
+              = render :partial => 'userinfo', :locals => { :f => b }
