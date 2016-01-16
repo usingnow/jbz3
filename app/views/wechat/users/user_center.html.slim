@@ -1,0 +1,13 @@
+br
+.container
+  .row
+    .col-xs-12.col-sm-12
+      - @orders.each do |order|
+        .label.label-warning.pull-right 
+          |订单号 
+          =  order.ref
+        .label.label-info.pull-left
+          = order.created_at.to_formatted_s(:db)
+        hr
+        p = link_to "赎回", root_path, class: 'btn btn-sm btn-warning'
+        hr

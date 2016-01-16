@@ -17,6 +17,9 @@ class Wechat::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
+    @order.user_id = current_user.id
+    @order.ref = Order.create_ref
+    # current_user.orders << @order
 
     respond_to do |format|
       if @order.save
@@ -38,6 +41,6 @@ class Wechat::OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:name, :creditcard_num, :email, :cellphone, :address)
+      params.require(:order).permit(:name, :creditcard_num, :email, :cellphone, :address, :id_card, :ref)
     end
 end

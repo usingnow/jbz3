@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114141045) do
+ActiveRecord::Schema.define(version: 20160116052424) do
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -55,7 +55,13 @@ ActiveRecord::Schema.define(version: 20160114141045) do
     t.string   "address",        limit: 255
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "user_id",        limit: 4
+    t.string   "id_card",        limit: 255
+    t.string   "ref",            limit: 255
   end
+
+  add_index "orders", ["ref"], name: "index_orders_on_ref", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name",            limit: 255
@@ -90,4 +96,5 @@ ActiveRecord::Schema.define(version: 20160114141045) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "line_items", "orders"
+  add_foreign_key "orders", "users"
 end

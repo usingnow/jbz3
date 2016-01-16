@@ -44,6 +44,10 @@ html lang="en"
               span.caret
             ul.dropdown-menu.dropdown-menu-right aria-labelledby="dropupMenu"
               - if user_signed_in?
+                li
+                  a
+                    = current_user.cellphone
+                li.divider role='separator'
                 li 
                   = link_to wechat_user_center_path do
                     = fa_icon 'th-large', class: "fa-fw"
