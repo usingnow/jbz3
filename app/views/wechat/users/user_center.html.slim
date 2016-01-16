@@ -2,47 +2,59 @@ br
 .container
   .row
     .col-xs-12.col-sm-12
-      - if @orders.empty?
-        .alert.alert-warning
-          |您还没有订单。
+      ul.nav.nav-pills role="tablist"
+        li.active role="presentation"
+          a href="#order" aria-controls="home" role="tab" data-toggle="tab" 我的订单
+        li role="presentation"
+          a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" 我的信息
 
-        = link_to "立刻前往选购", root_path, class: 'btn btn-primary btn-lg btn-block'
-      - else
-        - @orders.each do |order|
-          span.label.label-warning.pull-left
-            |订单号 
-            =  order.ref
-          span.label.label-info.pull-right
-            = order.created_at.to_formatted_s(:db)
-          br
-          br
-          - order.line_items.each do |item|
-            .row
-              .col-xs-8.col-sm-8
-                p.wc_sm = item.jbz_sku.title
-                p.wc_sm
-                  |已兑换积分：
-                  = item.quantity
-                  ' 
-                  |&times 
-                  = item.jbz_sku.reward
-                  ' 
-                  |=
-                  ' 
-                  = subtotal(item.jbz_sku.reward, item.quantity)
-                p.wc_sm
-                  |可赎回金额：
-                  = item.quantity
-                  ' 
-                  |&times 
-                  = item.jbz_sku.price
-                  ' 
-                  |=
-                  ' 
-                  = subtotal(item.jbz_sku.price, item.quantity)
-              .col-xs-4.col-sm-4
-                = link_to root_path, class: 'btn btn-sm btn-primary btn-block' do
-                  = fa_icon "money"
-                  ' 
-                  |立即赎回
-          hr
+      br
+
+      .tab-content
+        .tab-pane.active role="tabpanel" id="order"
+          - if @orders.empty?
+            .alert.alert-warning
+              |您还没有订单。
+
+            = link_to "立刻前往选购", root_path, class: 'btn btn-primary btn-lg btn-block'
+          - else
+            - @orders.each do |order|
+              span.label.label-warning.pull-left
+                |订单号 
+                =  order.ref
+              span.label.label-info.pull-right
+                = order.created_at.to_formatted_s(:db)
+              br
+              br
+              - order.line_items.each do |item|
+                .row
+                  .col-xs-8.col-sm-8
+                    p.wc_sm = item.jbz_sku.title
+                    p.wc_sm
+                      |已兑换积分：
+                      = item.quantity
+                      ' 
+                      |&times 
+                      = item.jbz_sku.reward
+                      ' 
+                      |=
+                      ' 
+                      = subtotal(item.jbz_sku.reward, item.quantity)
+                    p.wc_sm
+                      |可赎回金额：
+                      = item.quantity
+                      ' 
+                      |&times 
+                      = item.jbz_sku.price
+                      ' 
+                      |=
+                      ' 
+                      = subtotal(item.jbz_sku.price, item.quantity)
+                  .col-xs-4.col-sm-4
+                    = link_to root_path, class: 'btn btn-sm btn-primary btn-block' do
+                      = fa_icon "money"
+                      ' 
+                      |立即赎回
+              hr
+        .tab-pane role="tabpanel" id="profile"
+          = current_user.cellphone
