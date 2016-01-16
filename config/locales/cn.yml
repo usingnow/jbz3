@@ -1,0 +1,12 @@
+cn:
+  models:
+    user: "用户"
+
+  attributes:
+    user:
+      name: "姓名"
+      cellphone: "手机号"
+      creditcard_num: "信用卡"
+      id_card: "身份证"
+      address: "地址"
+      email: "邮箱"

@@ -58,5 +58,14 @@ br
               hr
         .tab-pane role="tabpanel" id="profile"
           = simple_form_for [:wechat, @user], :input_html => { :class => "form-horizontal" } do |b|
-            - b.with_options :disabled => true do |b|
+            = b.error_notification
+            - b.with_options :readonly => true do |b|
               = render :partial => 'userinfo', :locals => { :f => b }
+            .form-actions
+              a.btn.btn-primary id="enableinfoupdate" 修改
+              '
+              |
+              a.btn.btn-warning id="disableinfoupdate" 取消
+              '
+              |
+              = b.button :submit, value: "保存", class: "btn btn-info"

@@ -15,6 +15,15 @@ class Wechat::UsersController < ApplicationController
     @user = current_user
   end
 
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to wechat_user_center_path
+    else
+      render 'user_center'
+    end
+  end
+
   private
     def set_user
       @user = User.find(params[:id])
@@ -22,6 +31,10 @@ class Wechat::UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:email)
+    end
+
+    def user_params
+      params.require(:user).permit(:name, :cellphone, :creditcard_num, :id_card, :address, :email)
     end
 
 end
