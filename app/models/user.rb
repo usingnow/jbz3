@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
   
-  # 取消 devise 默认用 email 登录
+  # 取消 devise 默认 email 必须有值
   def email_required?
     false
   end
