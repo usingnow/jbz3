@@ -8,10 +8,7 @@
 
         .form-inputs
           br
-          = f.input :cellphone, label: false, required: true, autofocus: true, placeholder: '手机号/卡号'
-            / = fa_icon 'user'
-            / '
-            / |手机号/卡号
+          = f.input :cellphone, label: false, required: true, autofocus: true, placeholder: '手机号'
           br
           = f.input :password, label: false, placeholder: '密码', required: true
           br
@@ -19,5 +16,5 @@
           br
 
         .form-actions
-          = f.button :submit, class: "btn btn-primary" do
-            创建账户
+          = f.button :submit, value: "创建账户", class: "btn btn-primary" do
+            

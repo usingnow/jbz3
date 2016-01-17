@@ -12,27 +12,50 @@ class Wechat::OrdersController < ApplicationController
     end
     
     @order = Order.new
+    if user_signed_in? 
+      @order.user_id = current_user.id
+      @order.name = current_user.name
+      @order.cellphone = current_user.cellphone
+      @order.creditcard_num = current_user.creditcard_num
+      @order.id_card = current_user.id_card
+      @order.address = current_user.address
+      @order.email = current_user.email
+    end
   end
 
   def create
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
-    @order.user_id = current_user.id
     @order.ref = Order.create_ref
-    # current_user.orders << @order
-
+    
     respond_to do |format|
-      if @order.save
+
+      if user_signed_in?
+        current_user.orders << @order
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
 
         format.html { redirect_to root_url, notice: "您的兑换已经成功，谢谢！" }
         format.json { render action: 'show', status: :created, location: @order }
+
       else
-        format.html { render action: 'new' }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        if @order.save
+          Cart.destroy(session[:cart_id])
+          session[:cart_id] = nil
+          @usernow = User.create!(name: @order.name, cellphone: @order.cellphone, password: "12121212", 
+                       creditcard_num: @order.creditcard_num, id_card: @order.id_card, 
+                       address: @order.address, email: @order.email)
+          @usernow.orders << @order
+
+          format.html { redirect_to root_url, notice: "您的兑换已经成功，谢谢！" }
+          format.json { render action: 'show', status: :created, location: @order }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @order.errors, status: :unprocessable_entity }
+        end
       end
     end
+
   end
 
   private

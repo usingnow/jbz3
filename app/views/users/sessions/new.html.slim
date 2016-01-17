@@ -15,6 +15,6 @@
           / = f.input :remember_me, label: '记住密码', as: :boolean if devise_mapping.rememberable?
 
         .form-actions
-          = f.button :submit, class: "btn btn-primary"
+          = f.button :submit, value: "登录", class: "btn btn-primary"
 
       = render "users/shared/links"
