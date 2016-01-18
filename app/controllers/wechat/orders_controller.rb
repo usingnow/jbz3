@@ -16,10 +16,10 @@ class Wechat::OrdersController < ApplicationController
       @order.user_id = current_user.id
       @order.name = current_user.name.empty? ? "尚待填写" : current_user.name
       @order.cellphone = current_user.cellphone
-      @order.creditcard_num = current_user.creditcard_num.empty? ? "尚待填写" : current_user.creditcard_num
       @order.id_card = current_user.id_card.empty? ? "尚待填写" : current_user.id_card
-      @order.address = current_user.address.empty? ? "尚待填写" : current_user.address
+      @order.creditcard_num = current_user.creditcard_num.empty? ? "尚待填写" : current_user.creditcard_num
       @order.email = current_user.email.empty? ? "尚待填写" : current_user.email
+      @order.address = current_user.address.empty? ? "尚待填写" : current_user.address
     end
   end
 
@@ -35,7 +35,7 @@ class Wechat::OrdersController < ApplicationController
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
 
-        format.html { redirect_to root_url, notice: "您的兑换已经成功，谢谢！" }
+        format.html { redirect_to root_url, notice: "您的兑换已经成功，请前往 \"用户中心\" -> \"我的订单\" 查看，谢谢！" }
         format.json { render action: 'show', status: :created, location: @order }
 
       else
