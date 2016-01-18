@@ -14,12 +14,12 @@ class Wechat::OrdersController < ApplicationController
     @order = Order.new
     if user_signed_in? 
       @order.user_id = current_user.id
-      @order.name = current_user.name
+      @order.name = current_user.name.empty? ? "尚待填写" : current_user.name
       @order.cellphone = current_user.cellphone
-      @order.creditcard_num = current_user.creditcard_num
-      @order.id_card = current_user.id_card
-      @order.address = current_user.address
-      @order.email = current_user.email
+      @order.creditcard_num = current_user.creditcard_num.empty? ? "尚待填写" : current_user.creditcard_num
+      @order.id_card = current_user.id_card.empty? ? "尚待填写" : current_user.id_card
+      @order.address = current_user.address.empty? ? "尚待填写" : current_user.address
+      @order.email = current_user.email.empty? ? "尚待填写" : current_user.email
     end
   end
 
