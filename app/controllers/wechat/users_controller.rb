@@ -16,7 +16,7 @@ class Wechat::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])     已经:set_user了，这行应该没用，保险起见，暂且先注释
     if @user.update(user_params)
       redirect_to wechat_user_center_path
     else
@@ -27,10 +27,6 @@ class Wechat::UsersController < ApplicationController
   private
     def set_user
       @user = User.find(params[:id])
-    end
-
-    def user_params
-      params.require(:user).permit(:email)
     end
 
     def user_params
