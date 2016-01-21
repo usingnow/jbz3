@@ -13,23 +13,18 @@ br
 
       hr
 
-      / 用户 登录 时自动填充用户信息；用户 未登录 时，要求用户填写个人信息并后台自动创建新用户账号
+      / 用户 登录 时自动填充用户信息
       - if user_signed_in?
         = simple_form_for [:wechat, @order ], :input_html => { :class => "form-horizontal" } do |f|
-          - f.with_options :readonly => true do |f|
-            = f.input :name
-            = f.input :cellphone, type: :tel
-            = f.input :id_card
-            = f.input :creditcard_num
-            = f.input :email, type: :email
-            = f.input :address
-            
+          - f.with_options :readonly => true do |b|
+            = render partial: 'wechat/shared/userinfo', locals: { f: b }
             
             - if current_user.name == "" || current_user.id_card == "" || current_user.creditcard_num == ""
               = f.submit "请前往 \"用户中心\" -> \"我的信息\" 补足必要信息", class: "btn btn-info btn-lg btn-block disabled"
             - else
               = f.submit "确认订单", class: "btn btn-info btn-lg btn-block"
-          
+              
+      / 用户 未登录 时，要求用户填写个人信息并后台自动创建新用户账号
       - else
         = simple_form_for [:wechat, @order] do |f|
           = f.input :name, label: false, placeholder: "您的姓名"
@@ -39,7 +34,6 @@ br
           = f.input :email, type: :email, label: false, placeholder: "电子邮箱"
           = f.input :address, label: false, placeholder: "地址"
           
-
           = f.submit "确认订单", class: "btn btn-info btn-lg btn-block"
           end
       end
