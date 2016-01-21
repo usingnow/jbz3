@@ -5,10 +5,6 @@ class Wechat::UsersController < ApplicationController
 
   layout 'wechat'
 
-  def login_by_SMS
-
-  end
-
   # 用户中心首页
   def user_center
     @orders = current_user.orders

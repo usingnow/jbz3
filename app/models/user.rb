@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   has_many :orders
+  has_many :adjust_points
+  has_many :query_points
+  has_many :request_dynamic_passwords
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

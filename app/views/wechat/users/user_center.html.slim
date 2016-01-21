@@ -65,7 +65,7 @@ br
               a.btn.btn-primary id="enableinfoupdate" 修改
               '
               |
-              a.btn.btn-warning id="disableinfoupdate" 锁定
+              a.btn.btn-warning disabled="true" id="disableinfoupdate" 锁定
               '
               |
-              = b.button :submit, value: "保存", class: "btn btn-info"
+              = b.button :submit, id: "infosave", value: "保存", disabled: "disabled", class: "btn btn-info"

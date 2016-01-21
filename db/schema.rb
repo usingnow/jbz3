@@ -13,6 +13,19 @@
 
 ActiveRecord::Schema.define(version: 20160118123900) do
 
+  create_table "adjust_points", force: :cascade do |t|
+    t.string   "creditcard_num", limit: 255
+    t.text     "request",        limit: 65535
+    t.text     "response",       limit: 65535
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "order_id",       limit: 4
+    t.integer  "user_id",        limit: 4
+  end
+
+  add_index "adjust_points", ["order_id"], name: "index_adjust_points_on_order_id", using: :btree
+  add_index "adjust_points", ["user_id"], name: "index_adjust_points_on_user_id", using: :btree
+
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -77,6 +90,30 @@ ActiveRecord::Schema.define(version: 20160118123900) do
     t.datetime "updated_at",                    null: false
   end
 
+  create_table "query_points", force: :cascade do |t|
+    t.string   "creditcard_num", limit: 255
+    t.text     "request",        limit: 65535
+    t.text     "response",       limit: 65535
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "order_id",       limit: 4
+    t.integer  "user_id",        limit: 4
+  end
+
+  add_index "query_points", ["order_id"], name: "index_query_points_on_order_id", using: :btree
+  add_index "query_points", ["user_id"], name: "index_query_points_on_user_id", using: :btree
+
+  create_table "request_dynamic_passwords", force: :cascade do |t|
+    t.string   "creditcard_num", limit: 255
+    t.text     "request",        limit: 65535
+    t.text     "response",       limit: 65535
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "user_id",        limit: 4
+  end
+
+  add_index "request_dynamic_passwords", ["user_id"], name: "index_request_dynamic_passwords_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: ""
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -99,6 +136,11 @@ ActiveRecord::Schema.define(version: 20160118123900) do
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "adjust_points", "orders"
+  add_foreign_key "adjust_points", "users"
   add_foreign_key "line_items", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "query_points", "orders"
+  add_foreign_key "query_points", "users"
+  add_foreign_key "request_dynamic_passwords", "users"
 end

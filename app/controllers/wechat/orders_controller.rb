@@ -38,11 +38,15 @@ class Wechat::OrdersController < ApplicationController
 
         else 
           # 逻辑有误，此时 order 已经保存，手机号必定重复，而且 user 也会建立，这个方法不管用
+
+          # Rails 使用有误，改用正确的 Rais api 实现。先着手解决浦发api的问题，再回来处理。
           # Order.all.each do |order|
           #   if order.cellphone == @order.cellphone
           #     format.html { redirect_to root_url, notice: "手机号重复，请重新购买，谢谢！" }
           #   end
           # end
+
+          session[:order_id] = @order.id
 
           # 路人用户在创建订单的时候，后台自动创建 user 账户，并且将订单挂到该新用户账户
           @usernow = User.create!(name: @order.name, cellphone: @order.cellphone, password: "12121212", 
@@ -53,7 +57,7 @@ class Wechat::OrdersController < ApplicationController
           session[:cart_id] = nil
 
         end
-        format.html { redirect_to root_url, notice: "您的兑换已经成功，谢谢！" }
+        format.html { redirect_to new_wechat_query_point_path, notice: "您的兑换已经成功，谢谢！" }
         format.json { render action: 'show', status: :created, location: @order }
 
       else
