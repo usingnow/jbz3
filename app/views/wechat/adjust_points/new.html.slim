@@ -1,0 +1,18 @@
+br
+.container
+  .row
+    .col-xs-12.col-sm-12
+      = bootstrap_flash
+
+      h4
+        .label.label-info = @order.ref
+
+  hr
+  .row
+    .col-xs-12.col-sm-12
+      = simple_form_for [:wechat, @adjust_point] do |f|
+        = f.input :creditcard_num, label: false, placeholder: "信用卡号"
+        / = f.input :adjusted_point, lable: false, placeholder: "扣除积分数"
+        / = f.input :rand_code, label: false, placeholder: "随机码"
+        / = f.button '发送随机码', input_html: { class: 'inline'}
+        = f.submit "确认扣除积分", class: "btn btn-info btn-lg btn-block"

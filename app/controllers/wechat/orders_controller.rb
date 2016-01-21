@@ -26,7 +26,9 @@ class Wechat::OrdersController < ApplicationController
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
 
-        format.html { redirect_to root_url, notice: "您的兑换已经成功，谢谢！" }
+        session[:order_id] = @order.id
+
+        format.html { redirect_to new_wechat_query_point_path, notice: "您的兑换已经成功，谢谢！" }
         format.json { render action: 'show', status: :created, location: @order }
       else
         format.html { render action: 'new' }

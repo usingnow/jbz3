@@ -1,5 +1,7 @@
 class Order < ActiveRecord::Base
   belongs_to :user
+  has_one :adjust_point
+  has_many :query_points
   has_many :line_items, dependent: :destroy
 
   validates :name, :creditcard_num, :id_card, :cellphone, presence: true

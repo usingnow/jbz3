@@ -1,0 +1,10 @@
+br
+.container
+  .row
+    .col-xs-12.col-sm-12
+      = simple_form_for [:wechat, @query_point] do |f|
+        = f.input :creditcard_num, label: false, placeholder: "16位浦发信用卡号"
+
+        = f.submit "查询您的积分", class: 'btn btn-info btn-lg btn-block'
+
+      / =session[:order_id]

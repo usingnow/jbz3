@@ -15,6 +15,10 @@ Rails.application.routes.draw do
     resources :carts
     resources :line_items, only: [:create]
     resources :orders
+
+    resources :query_points
+    resources :adjust_points
+    resources :request_dynamic_passwords
   end
 
     # The priority is based upon order of creation: first created -> highest priority.
