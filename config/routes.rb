@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :query_points
     resources :adjust_points
     resources :request_dynamic_passwords
+    resources :users
   end
 
     # The priority is based upon order of creation: first created -> highest priority.

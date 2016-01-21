@@ -128,6 +128,10 @@ ActiveRecord::Schema.define(version: 20160116163704) do
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.string   "cellphone",              limit: 255
+    t.string   "name",                   limit: 255, default: ""
+    t.string   "creditcard_num",         limit: 255, default: ""
+    t.string   "address",                limit: 255, default: ""
+    t.string   "id_card",                limit: 255, default: ""
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

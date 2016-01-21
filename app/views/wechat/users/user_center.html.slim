@@ -57,4 +57,15 @@ br
                       |立即赎回
               hr
         .tab-pane role="tabpanel" id="profile"
-          = current_user.cellphone
+          = simple_form_for [:wechat, @user], :input_html => { :class => "form-horizontal" } do |b|
+            = b.error_notification
+            - b.with_options :readonly => true do |b|
+              = render :partial => 'userinfo', :locals => { :f => b }
+            .form-actions
+              a.btn.btn-primary id="enableinfoupdate" 修改
+              '
+              |
+              a.btn.btn-warning id="disableinfoupdate" 锁定
+              '
+              |
+              = b.button :submit, value: "保存", class: "btn btn-info"
