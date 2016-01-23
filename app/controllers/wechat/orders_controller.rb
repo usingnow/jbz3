@@ -14,12 +14,12 @@ class Wechat::OrdersController < ApplicationController
     @order = Order.new
     if user_signed_in? 
       @order.user_id = current_user.id
-      @order.name = current_user.name.empty? ? "尚待填写" : current_user.name
+      @order.name = current_user.name? ? current_user.name : "尚待填写"
       @order.cellphone = current_user.cellphone
-      @order.id_card = current_user.id_card.empty? ? "尚待填写" : current_user.id_card
-      @order.creditcard_num = current_user.creditcard_num.empty? ? "尚待填写" : current_user.creditcard_num
-      @order.email = current_user.email.empty? ? "尚待填写" : current_user.email
-      @order.address = current_user.address.empty? ? "尚待填写" : current_user.address
+      @order.id_card = current_user.id_card? ? current_user.id_card : "尚待填写" 
+      @order.creditcard_num = current_user.creditcard_num? ? current_user.creditcard_num : "尚待填写"
+      @order.email = current_user.email? ? current_user.email : "尚待填写"
+      @order.address = current_user.address? ? current_user.address : "尚待填写"
     end
   end
 
@@ -27,6 +27,8 @@ class Wechat::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
     @order.ref = Order.create_ref
+    @order.total_amount = @cart.total_amount
+    @order.total_reward = @cart.total_reward
     
     respond_to do |format|
       if @order.save
@@ -54,7 +56,7 @@ class Wechat::OrdersController < ApplicationController
           session[:cart_id] = nil
 
         end
-        format.html { new_wechat_query_point_path, notice: "您的兑换已经成功，谢谢！" }
+        format.html { redirect_to new_wechat_query_point_path, notice: "您的兑换已经成功，谢谢！" }
         format.json { render action: 'show', status: :created, location: @order }
 
       else

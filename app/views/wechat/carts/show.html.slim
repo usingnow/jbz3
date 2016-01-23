@@ -9,16 +9,35 @@
         ' 
         |清空购物车
       hr
-
-      - @line_items.each do |line_item|
-        p
-          = line_item.jbz_sku.title
-          ' 
-          '&times
-          ' 
-          = line_item.quantity
+  .row.wechat-small
+    .col-xs-5.col-sm-5 所购产品
+    .col-xs-2.col-sm-2 数量
+    .col-xs-2.col-sm-2 金额
+    .col-xs-3.col-sm-3 积分
+    .col-xs-12.col-sm-12.clearfix
+      hr
+    - @line_items.each do |line_item|
+      .col-xs-5.col-sm-5
+        = line_item.jbz_sku.title
+      .col-xs-2.col-sm-2
+        = line_item.quantity
+      .col-xs-2.col-sm-2
+        = number_to_currency line_item.total_price
+      .col-xs-3.col-sm-3
+        = line_item.total_reward
+      .col-xs-12.col-sm-12.clearfix
         hr
-      = link_to new_wechat_order_path, class: "btn btn-primary btn-lg btn-block" do
-        = fa_icon "file-text-o"
-        ' 
-        | 生成订单
+    .col-xs-5.col-sm-5
+    .col-xs-2.col-sm-2
+      b 总计：
+    .col-xs-2.col-sm-2
+      b = number_to_currency @cart.total_amount
+    .col-xs-3.col-sm-3
+      b = @cart.total_reward
+    .col-xs-12.col-sm-12.clearfix
+      hr
+
+  = link_to new_wechat_order_path, class: "btn btn-primary btn-lg btn-block" do
+    = fa_icon "file-text-o"
+    ' 
+    | 生成订单

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116163704) do
+ActiveRecord::Schema.define(version: 20160123114430) do
 
   create_table "adjust_points", force: :cascade do |t|
     t.string   "creditcard_num", limit: 255
@@ -66,11 +66,13 @@ ActiveRecord::Schema.define(version: 20160116163704) do
     t.string   "email",          limit: 255
     t.string   "cellphone",      limit: 255
     t.string   "address",        limit: 255
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
     t.integer  "user_id",        limit: 4
     t.string   "id_card",        limit: 255
     t.string   "ref",            limit: 255
+    t.decimal  "total_amount",               precision: 5,  scale: 2
+    t.decimal  "total_reward",               precision: 10
   end
 
   add_index "orders", ["ref"], name: "index_orders_on_ref", using: :btree
