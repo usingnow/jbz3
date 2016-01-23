@@ -13,8 +13,13 @@ Rails.application.routes.draw do
     resources :jbz_skus, only: [:show]
 
     resources :carts
-    resources :line_items, only: [:create]
-    resources :orders
+    resources :line_items, only: [:create] do
+      member do
+        post :redeem
+      end
+    end
+
+    resources :orders 
 
     resources :query_points
     resources :adjust_points

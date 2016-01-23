@@ -3,7 +3,7 @@ class Wechat::OrdersController < ApplicationController
 
   include CurrentCart
   before_action :set_cart, only: [:new, :create]
-  before_action :set_order, only: [:show]
+  before_action :set_order, only: [:show,]
 
   def new
     if @cart.line_items.empty?
@@ -64,8 +64,9 @@ class Wechat::OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
-
   end
+
+
 
   private
     def set_order

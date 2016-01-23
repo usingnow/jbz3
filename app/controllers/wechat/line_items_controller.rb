@@ -3,6 +3,7 @@ class Wechat::LineItemsController < ApplicationController
 
   include CurrentCart
   before_action :set_cart, only: [:create]
+  before_action :set_line_item, only: [:redeem]
 
   def create
     jbz_sku = JbzSku.find(params[:jbz_sku_id])
@@ -17,6 +18,15 @@ class Wechat::LineItemsController < ApplicationController
       flash[:alert] = "联系客服邮箱：3353512440@qq.com。" # 修正wording。
       format.html { render :new }
       format.json { render json: @line_item.errors, status: :unprocessable_entity }
+    end
+  end
+
+  def redeem
+    @line_item.redeemed_at = DateTime.current
+    if @line_item.save
+      redirect_to wechat_user_center_url, notice: "订单已经成功申请请赎回。"
+    else
+      redirect_tp wechat_user_center_url, alert: "订单赎回申请失败，请联系管理员。"
     end
   end
 

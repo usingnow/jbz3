@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123114430) do
+ActiveRecord::Schema.define(version: 20160123170202) do
 
   create_table "adjust_points", force: :cascade do |t|
     t.string   "creditcard_num", limit: 255
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20160123114430) do
     t.integer  "sales_volume",   limit: 4
     t.integer  "product_id",     limit: 4
     t.string   "ref",            limit: 255
-    t.string   "redemption",     limit: 255
+    t.integer  "redemption",     limit: 4
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
   end
@@ -48,12 +48,14 @@ ActiveRecord::Schema.define(version: 20160123114430) do
   add_index "jbz_skus", ["ref"], name: "index_jbz_skus_on_ref", using: :btree
 
   create_table "line_items", force: :cascade do |t|
-    t.integer  "jbz_sku_id", limit: 4
-    t.integer  "cart_id",    limit: 4
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.integer  "quantity",   limit: 4, default: 1
-    t.integer  "order_id",   limit: 4
+    t.integer  "jbz_sku_id",     limit: 4
+    t.integer  "cart_id",        limit: 4
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "quantity",       limit: 4, default: 1
+    t.integer  "order_id",       limit: 4
+    t.datetime "redeemed_at"
+    t.datetime "written_off_at"
   end
 
   add_index "line_items", ["cart_id"], name: "index_line_items_on_cart_id", using: :btree
