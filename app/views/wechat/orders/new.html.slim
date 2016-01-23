@@ -1,16 +1,31 @@
 br
 .container
-  .row
-    .col-xs-12.col-sm-12
-      h4 请完成您的订单
-
-      - @cart.line_items.each do |line_item|
-        p = line_item.jbz_sku.title
-        p
-          = line_item.jbz_sku.reward
-          |&times
-          = line_item.quantity
-
+  .row.wechat-small
+    .col-xs-5.col-sm-5 所购产品
+    .col-xs-2.col-sm-2 数量
+    .col-xs-2.col-sm-2 金额
+    .col-xs-3.col-sm-3 积分
+    .col-xs-12.col-sm-12.clearfix
+      hr
+    - @cart.line_items.each do |item|
+      .col-xs-5.col-sm-5
+        = item.jbz_sku.title
+      .col-xs-2.col-sm-2
+        = item.quantity
+      .col-xs-2.col-sm-2
+        = number_to_currency item.total_price
+      .col-xs-3.col-sm-3
+        = item.total_reward
+      .col-xs-12.col-sm-12.clearfix
+        hr
+    .col-xs-5.col-sm-5
+    .col-xs-2.col-sm-2
+      b 总计：
+    .col-xs-2.col-sm-2
+      b = number_to_currency @cart.total_amount
+    .col-xs-3.col-sm-3
+      b = @cart.total_reward
+    .col-xs-12.col-sm-12.clearfix
       hr
 
       / 用户 登录 时自动填充用户信息

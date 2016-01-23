@@ -17,7 +17,7 @@ class Wechat::OrdersController < ApplicationController
       @order.user_id = current_user.id
       @order.name = current_user.name? ? current_user.name : "尚待填写"
       @order.cellphone = current_user.cellphone
-      @order.id_card = current_user.id_card? ? current_user.id_card : "尚待填写"
+      @order.id_card = current_user.id_card? ? current_user.id_card : "尚待填写" 
       @order.creditcard_num = current_user.creditcard_num? ? current_user.creditcard_num : "尚待填写"
       @order.email = current_user.email? ? current_user.email : "尚待填写"
       @order.address = current_user.address? ? current_user.address : "尚待填写"
@@ -28,6 +28,8 @@ class Wechat::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
     @order.ref = Order.create_ref
+    @order.total_amount = @cart.total_amount
+    @order.total_reward = @cart.total_reward
     
     respond_to do |format|
       if @order.save
