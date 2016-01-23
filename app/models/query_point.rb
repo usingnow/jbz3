@@ -13,6 +13,7 @@ class QueryPoint < ActiveRecord::Base
             adjustmentIntegralValue: "",     # 积分调整值，选填
             adjustmentMark: "",              # 积分调整标志 + 加，- 减，选填
             cardNo: "6221775500000010",      # 信用卡号，必填
+            # cardNo: creditcard_num         # 正式上线
             cardStateExamination: "N",       # 卡片状态检查 N:不检查（建议送N），必填
             certno: "",                      # 证件号码，选填
             checkItem: "0",                  # 检查项目选择， 默认为"0"， 不检查，必填
@@ -32,7 +33,7 @@ class QueryPoint < ActiveRecord::Base
     # client = Savon.client(wsdl: "http://172.30.122.161:8002/spdbcccLife/services/DynamicPsw?wsdl", encoding: "GBK")
 
     # Call the SPDB API.
-    response = client.call(:queryPoint, message: { "spd:in0" => self.request.to_json })
+    response = client.call(:queryPoint, message: { "in0" => self.request.to_json })
     self.response = response
     if self.save
       return

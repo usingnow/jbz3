@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   namespace :wechat do
     get 'board/index'
     
-    get 'users/login_by_SMS'
     get 'user_center' => 'users#user_center'
 
     resources :jbz_skus, only: [:show]

@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   
   validates :cellphone, format: { with: /1(3\d|5[^4]|8[^34])\d{8}/, message: "手机号不正确，请重新输入" }, length: { is: 11 }
   validates_uniqueness_of :cellphone
+  
+  # 除了手机号，其余信息只在 update 时才验证
+  validates :id_card, format: { with: /([1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3})|([1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4})/, message: "身份证号不正确，请重新输入" }, on: :update
+  
 
   # 取消 devise 默认 email 必须有值
   def email_required?
