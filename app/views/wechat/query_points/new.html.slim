@@ -2,9 +2,13 @@ br
 .container
   .row
     .col-xs-12.col-sm-12
-      = simple_form_for [:wechat, @query_point] do |f|
-        = f.input :creditcard_num, label: false, placeholder: "16位浦发信用卡号"
+      h3 积分查询
+      br
+      = simple_form_for [:wechat, @query_point.user], input_html: { class: "form-horizontal" } do |f|
+        - f.with_options :readonly => true do |f|
+          = f.input :name
+          = f.input :creditcard_num
 
         = f.submit "查询您的积分", class: 'btn btn-info btn-lg btn-block'
 
-      / =session[:order_id]
+      / = session[:order_id]

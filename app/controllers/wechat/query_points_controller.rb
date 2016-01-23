@@ -5,14 +5,18 @@ class Wechat::QueryPointsController < ApplicationController
 
   def new
     @query_point = QueryPoint.new
+
+    user_signed_in? ? @query_point.user_id = current_user.id : @query_point.user_id = User.last.id
+      
   end
 
   def create
     @query_point = QueryPoint.new(query_point_params)
 
-    @query_point.request = @query_point.build_req(@query_point.creditcard_num)
+    user_signed_in? ? @query_point.user_id = current_user.id : @query_point.user_id = User.last.id
     @query_point.order_id = session[:order_id]
-    @query_point.user_id = current_user.id
+    @query_point.creditcard_num = @query_point.user.creditcard_num
+    @query_point.request = @query_point.build_req(@query_point.creditcard_num)
 
     respond_to do |format|
       if @query_point.save
