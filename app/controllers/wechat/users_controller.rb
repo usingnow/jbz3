@@ -1,6 +1,6 @@
 class Wechat::UsersController < ApplicationController
 
-  before_filter :authenticate_user!, except: [:login_by_SMS]
+  before_filter :authenticate_user!
   before_action :set_user, only: [:show, :update, :destroy, :edit]
 
   layout 'wechat'
@@ -18,6 +18,13 @@ class Wechat::UsersController < ApplicationController
     else
       render 'user_center'
     end
+
+    #   if @user.update(user_params)
+    #     return
+    #   else
+    #   format.html { render action: 'user_center' }
+    #   format.json { render json: @user.errors, status: :unprocessable_entity }
+    #   end
   end
 
   private

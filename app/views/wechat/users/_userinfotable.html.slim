@@ -1,0 +1,12 @@
+= simple_form_for [:wechat, @user], :input_html => { :class => "form-horizontal" }, remote: true, id: "userinfolist" do |b|
+    / = b.error_notification
+    - b.with_options :readonly => true do |b|
+      = render partial: 'wechat/shared/userinfo', locals: { f: b }
+    / .form-actions
+    a.btn.btn-primary id="enableinfoupdate" 修改
+    '
+    |
+    a.btn.btn-warning disabled="true" id="disableinfoupdate" 锁定
+    '
+    |
+    = b.button :submit, id: "infosave", value: "保存", disabled: "disabled", class: "btn btn-info"
