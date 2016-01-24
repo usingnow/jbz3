@@ -59,7 +59,7 @@ class Wechat::OrdersController < ApplicationController
           session[:cart_id] = nil
 
         end
-        format.html { redirect_to query_points_for_wechat_order_path(@order.id), notice: "您的兑换已经成功，谢谢！" }
+        format.html { redirect_to query_points_for_wechat_order_path(@order.id) }
         format.json { render action: 'show', status: :created, location: @order }
 
       else
@@ -76,9 +76,10 @@ class Wechat::OrdersController < ApplicationController
     reward = query_point.process_spdb_api(@order)
 
     if reward > @order.total_reward
-      redirect_to adjust_points_for_wechat_order_path, notice: "可用积分#{reward}。"
+      session[:order_id] = @order.id
+      redirect_to new_wechat_adjust_point_path, notice: "可用积分#{reward}。"
     else
-      redirect_to user_center_of_wechat_user_url, alert: "积分不足。请查证后再申请。"
+      redirect_to wechat_user_cente_url, alert: "积分不足。请查证后再申请。" # This is the place need to revise all the user center url.
     end
   end
 
