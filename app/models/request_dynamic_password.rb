@@ -25,7 +25,7 @@ class RequestDynamicPassword < ActiveRecord::Base
     # client = Savon.client(wsdl: "http://172.30.122.161:8002/spdbcccLife/services/DynamicPsw?wsdl", encoding: "GBK")
     
     # Call the SPDB API.
-    response = client.call(:RequestDynamicPsw, message: { "in0" => req })
+    response = client.call(:request_dynamic_psw, message: { "in0" => req })
     self.response = response
     if self.save
       if reponse.to_hash[:status] == '3'
