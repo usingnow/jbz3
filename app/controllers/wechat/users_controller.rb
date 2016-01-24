@@ -39,7 +39,7 @@ class Wechat::UsersController < ApplicationController
     if @user.request_dynamic_pd
       redirect_to new_user_session_path
     else
-      redirect_to wechat_user_login_by_sms_path
+      redirect_to wechat_users_login_by_sms_path
     end
 
   end
