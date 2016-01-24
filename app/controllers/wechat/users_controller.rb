@@ -17,7 +17,7 @@ class Wechat::UsersController < ApplicationController
   def update
     # @user = User.find(params[:id])                已经:set_user了，这行应该没用，保险起见，暂且先注释
     if @user.update(user_params)
-      render wechat_user_center_path
+      render 'user_center'
     else
       render 'user_center'
     end
