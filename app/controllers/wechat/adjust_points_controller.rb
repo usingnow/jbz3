@@ -10,7 +10,7 @@ class Wechat::AdjustPointsController < ApplicationController
 
   def create
     @adjust_point = AdjustPoint.new(adjust_point_params)
-
+    @adjust_point.order_id = session[:order_id]
     request_dynamic_password = RequestDynamicPassword.new(order_id: session[:order_id])
 
     @adjust_point.request_dynamic_passwords << request_dynamic_password

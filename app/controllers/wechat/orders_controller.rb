@@ -3,7 +3,7 @@ class Wechat::OrdersController < ApplicationController
 
   include CurrentCart
   before_action :set_cart, only: [:new, :create]
-  before_action :set_order, only: [:show, :query_points_for, :adjust_points_for]
+  before_action :set_order, only: [:show, :update, :query_points_for, :adjust_points_for]
 
   def new
     if @cart.line_items.empty?
@@ -69,6 +69,20 @@ class Wechat::OrdersController < ApplicationController
     end
   end
 
+  def update
+    @order.update(order_params)
+    if @order.dynamic_key == @order.request_dynamic_passwords.last.dynamic_key
+      if @order.adjust_point.process_spdb_api(@order)
+        redirect_to wechat_user_center_url, notice: "积分扣除成功。"
+      else
+        logger.error "&&&&& 积分扣除失败。#{order.ref} && #{order.id}"
+        redirect_to wechat_user_center_url, alert: "扣除失败，请稍后重新尝试。"
+      end
+    else
+      redirect_to new_wechat_adjust_point_url, notice: "验证码错误。"
+    end
+  end
+
   def query_points_for
     query_point = QueryPoint.new
     @order.query_points << query_point
@@ -79,12 +93,12 @@ class Wechat::OrdersController < ApplicationController
       session[:order_id] = @order.id
       redirect_to new_wechat_adjust_point_path, notice: "可用积分#{reward}。"
     else
-      redirect_to wechat_user_cente_url, alert: "积分不足。请查证后再申请。" # This is the place need to revise all the user center url.
+      redirect_to wechat_user_center_url, alert: "积分不足。请查证后再申请。" # This is the place need to revise all the user center url.
     end
   end
 
   def adjust_points_for
-    
+
 
   end
 
@@ -94,6 +108,6 @@ class Wechat::OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:name, :creditcard_num, :email, :cellphone, :address, :id_card, :ref)
+      params.require(:order).permit(:name, :creditcard_num, :email, :cellphone, :address, :id_card, :ref, :dynamic_key)
     end
 end
