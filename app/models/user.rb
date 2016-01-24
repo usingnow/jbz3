@@ -33,16 +33,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  # 创建动态验证码
-  def create_rand_key
-    keys = ""
-    4.times{
-      key = Random.rand(9).to_s
-      keys += key
-    }
-    return keys
-  end
-
   # 调用浦发 API 发送验证码
   def request_dynamic_pd
     request_dynamic_password = RequestDynamicPassword.new

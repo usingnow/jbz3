@@ -84,6 +84,7 @@ class Wechat::OrdersController < ApplicationController
   end
 
   def adjust_points_for
+    
 
   end
 

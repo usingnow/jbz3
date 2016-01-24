@@ -1,6 +1,7 @@
 class AdjustPoint < ActiveRecord::Base
   belongs_to :order
   belongs_to :user
+  has_many :request_dynamic_passwords
 
   # 调用接口,构建数据结构。
   def build_req(creditcard_num, adjusted_point)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160124043701) do
+ActiveRecord::Schema.define(version: 20160124095013) do
 
   create_table "adjust_points", force: :cascade do |t|
     t.string   "creditcard_num", limit: 255
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160124043701) do
     t.datetime "updated_at",                   null: false
     t.integer  "order_id",       limit: 4
     t.integer  "user_id",        limit: 4
+    t.integer  "adjusted_point", limit: 4
   end
 
   add_index "adjust_points", ["order_id"], name: "index_adjust_points_on_order_id", using: :btree
@@ -133,15 +134,20 @@ ActiveRecord::Schema.define(version: 20160124043701) do
   add_index "query_points", ["user_id"], name: "index_query_points_on_user_id", using: :btree
 
   create_table "request_dynamic_passwords", force: :cascade do |t|
-    t.string   "creditcard_num", limit: 255
-    t.text     "request",        limit: 65535
-    t.text     "response",       limit: 65535
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.integer  "user_id",        limit: 4
-    t.string   "dynamic_key",    limit: 255
+    t.string   "creditcard_num",  limit: 255
+    t.text     "request",         limit: 65535
+    t.text     "response",        limit: 65535
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "user_id",         limit: 4
+    t.string   "dynamic_key",     limit: 255
+    t.string   "status",          limit: 255
+    t.integer  "order_id",        limit: 4
+    t.integer  "adjust_point_id", limit: 4
   end
 
+  add_index "request_dynamic_passwords", ["adjust_point_id"], name: "index_request_dynamic_passwords_on_adjust_point_id", using: :btree
+  add_index "request_dynamic_passwords", ["order_id"], name: "index_request_dynamic_passwords_on_order_id", using: :btree
   add_index "request_dynamic_passwords", ["user_id"], name: "index_request_dynamic_passwords_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -172,5 +178,7 @@ ActiveRecord::Schema.define(version: 20160124043701) do
   add_foreign_key "orders", "users"
   add_foreign_key "query_points", "orders"
   add_foreign_key "query_points", "users"
+  add_foreign_key "request_dynamic_passwords", "adjust_points"
+  add_foreign_key "request_dynamic_passwords", "orders"
   add_foreign_key "request_dynamic_passwords", "users"
 end

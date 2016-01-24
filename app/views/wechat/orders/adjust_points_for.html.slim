@@ -1,7 +1,10 @@
 p this is adjust points for
 
-br
-.contianer
-  .row
-    .col-xs-12.col-sm-12
-      = simple_form_for [:wechat, @request_dynamic_password] do |f|
+/ br
+/ .contianer
+/   .row
+/     .col-xs-12.col-sm-12
+/       = simple_form_for [:wechat, @adjust_points] do |f|
+/         input.form-control id="gtcode" type="text" placeholder="输入短信验证码"
+
+/         = f.button :submit, value: "获取验证码", class: "btn btn-default"
