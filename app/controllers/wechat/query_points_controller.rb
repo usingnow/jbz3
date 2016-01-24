@@ -3,17 +3,16 @@ class Wechat::QueryPointsController < ApplicationController
 
   before_action :set_query_point, only: [:show]
 
-  def new
-    @query_point = QueryPoint.new
-
-    user_signed_in? ? @query_point.user_id = current_user.id : @query_point.user_id = User.last.id
-      
-  end
+  # 没必要有 new 的页面，先注释掉，跑一段时间没问题了就删除
+  # def new
+  #   @query_point = QueryPoint.new
+  #   user_signed_in? ? @query_point.user_id = current_user.id : @query_point.user_id = User.last.id
+  # end
 
   def create
     @query_point = QueryPoint.new(query_point_params)
 
-    user_signed_in? ? @query_point.user_id = current_user.id : @query_point.user_id = User.last.id
+    # user_signed_in? ? @query_point.user_id = current_user.id : @query_point.user_id = User.last.id
     @query_point.order_id = session[:order_id]
     @query_point.creditcard_num = @query_point.user.creditcard_num
     @query_point.request = @query_point.build_req(@query_point.creditcard_num)

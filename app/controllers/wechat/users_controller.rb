@@ -19,35 +19,29 @@ class Wechat::UsersController < ApplicationController
       render 'user_center'
     end
 
-    #   if @user.update(user_params)
-    #     return
-    #   else
-    #   format.html { render action: 'user_center' }
-    #   format.json { render json: @user.errors, status: :unprocessable_entity }
-    #   end
   end
 
-  # Todo: 这里使用了默认的 simple_for submit 方法，会浪费资源，等下一次迭代重构
-  def login_by_sms
-    @user = User.new
-  end
+  # 第一次上线先暂停短信验证登录，研究 devise 和 javascript 后再启用
+  # def login_by_sms
+  #   @user = User.new
+  # end
   
-  # 利用 simple_form 的 submit 来响应后台验证码的生成发送功能
-  def create
-    if @user = User.find_by_creditcard_num(params[:user][:creditcard_num])
-      if @user.request_dynamic_pd
-        session[:user_id] = @user.id
-        redirect_to new_user_session_path
-      else
-        redirect_to wechat_users_login_by_sms_path
-      end
+  # 利用 simple_form 的 submit 来响应后台验证码的生成发送功能，会浪费资源，等下一次迭代重构
+  # def create
+  #   if @user = User.find_by_creditcard_num(params[:user][:creditcard_num])
+  #     if @user.request_dynamic_pd
+  #       session[:user_id] = @user.id
+  #       redirect_to new_user_session_path
+  #     else
+  #       redirect_to wechat_users_login_by_sms_path
+  #     end
 
-    else
-      # flash[:alert] = "对不起，请注册后再登录，谢谢！"
-      redirect_to wechat_users_login_by_sms_path
-    end
+  #   else
+  #     # flash[:alert] = "对不起，请注册后再登录，谢谢！"
+  #     redirect_to wechat_users_login_by_sms_path
+  #   end
 
-  end
+  # end
 
   private
     def set_user

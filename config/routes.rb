@@ -8,8 +8,9 @@ Rails.application.routes.draw do
     get 'board/index'
     
     get 'user_center' => 'users#user_center'
-    get 'users/login_by_sms'
-    # post 'users/send_dynamic_key_path'
+
+    # 第一次上线先暂停短信验证登录，研究 devise 和 javascript 后再启用
+    # get 'users/login_by_sms'             
 
     resources :jbz_skus, only: [:show]
 
