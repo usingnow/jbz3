@@ -35,8 +35,12 @@ class User < ActiveRecord::Base
 
   # 创建动态验证码
   def create_rand_key
-    # 4.times(Random.rand(0..9)).to_s
-    return "6666"
+    keys = ""
+    4.times{
+      key = Random.rand(9).to_s
+      keys += key
+    }
+    return keys
   end
 
   # 调用浦发 API 发送验证码
