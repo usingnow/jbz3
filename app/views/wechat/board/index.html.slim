@@ -18,13 +18,12 @@
           .col-xs-6.col-sm-6
             span.original-price.text-muted
               |原价
-              = sku.original_price
-              |元起
+              = to_money(sku.original_price)
+              |元
           .col-xs-6.col-sm-6
             span.reward.text-danger 
               |积分
               = sku.reward
-              |起
     hr
 
 

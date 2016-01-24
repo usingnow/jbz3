@@ -45,11 +45,11 @@ br
                       = item.quantity
                       ' 
                       |&times 
-                      = item.jbz_sku.price
+                      = to_money item.jbz_sku.price
                       ' 
                       |=
                       ' 
-                      = subtotal(item.jbz_sku.price, item.quantity)
+                      = to_money subtotal(item.jbz_sku.price, item.quantity)
                   .col-xs-4.col-sm-4
                     - if item.redeemed_at
                       .alert.alert-success.pull-left.wechat-small style= "padding: 5px; margin-bottom: 0px"

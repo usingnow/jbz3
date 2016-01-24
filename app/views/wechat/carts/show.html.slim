@@ -22,7 +22,7 @@
       .col-xs-2.col-sm-2
         = line_item.quantity
       .col-xs-2.col-sm-2
-        = number_to_currency line_item.total_price
+        = to_money line_item.total_price
       .col-xs-3.col-sm-3
         = line_item.total_reward
       .col-xs-12.col-sm-12.clearfix
@@ -31,7 +31,7 @@
     .col-xs-2.col-sm-2
       b 总计：
     .col-xs-2.col-sm-2
-      b = number_to_currency @cart.total_amount
+      b = to_money @cart.total_amount
     .col-xs-3.col-sm-3
       b = @cart.total_reward
     .col-xs-12.col-sm-12.clearfix
