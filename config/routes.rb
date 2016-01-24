@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get 'board/index'
     
     get 'user_center' => 'users#user_center'
+    get 'users/login_by_sms'
+    # post 'users/send_dynamic_key_path'
 
     resources :jbz_skus, only: [:show]
 

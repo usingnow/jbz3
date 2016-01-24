@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(version: 20160124043701) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "user_id",        limit: 4
+    t.string   "dynamic_key",    limit: 255
   end
 
   add_index "request_dynamic_passwords", ["user_id"], name: "index_request_dynamic_passwords_on_user_id", using: :btree

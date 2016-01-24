@@ -3,13 +3,16 @@ class Users::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    @user = User.find(session[:user_id])
+    super
+  end
 
   # POST /resource/sign_in
   # def create
   #   super
+  # 删除不需要的session
+  #   session[:dynamic_password] =nil
   # end
 
   # DELETE /resource/sign_out

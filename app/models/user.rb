@@ -27,11 +27,37 @@ class User < ActiveRecord::Base
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
-      where(conditions).where(["cellphone = :value OR lower(email) = :value", { value: login.downcase }]).first
+      where(conditions).where(["cellphone = :value OR creditcard_num = :value OR lower(email) = :value", { value: login.downcase }]).first
     else
       where(conditions).first
     end
   end
+
+  # 创建动态验证码
+  def create_rand_key
+    keys = ""
+    4.times{
+      key = Random.rand(9).to_s
+      keys += key
+    }
+    return keys
+  end
+
+  # 调用浦发 API 发送验证码
+  def request_dynamic_pd
+    request_dynamic_password = RequestDynamicPassword.new
+    request_dynamic_passwords << request_dynamic_password
+
+    request_dynamic_password.dynamic_key = request_dynamic_password.process_spdb_api(request_dynamic_password.user.creditcard_num, create_rand_key)
+    if request_dynamic_password.dynamic_key
+      request_dynamic_password.save
+      return request_dynamic_password.dynamic_key
+    else
+      logger.error "神马神马错误。"
+      return
+    end
+  end
+
 end
 
 
