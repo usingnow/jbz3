@@ -1,7 +1,14 @@
 p this is adjust points for
 
 br
-.contianer
+.container
   .row
     .col-xs-12.col-sm-12
-      = simple_form_for [:wechat, @request_dynamic_password] do |f|
+      = simple_form_for [:wechat, @order] do |f|
+        .row
+          .col-xs-6.col-sm-6
+            = f.input :dynamic_key, label: false, placeholder: "4位验证码"
+          .col-xs-6.col-sm-6
+            = link_to "重发验证码", new_wechat_adjust_point_path, class: "btn btn-info disabled"
+
+        = f.button :submit, value: "确认扣除积分", class: "btn btn-info btn-lg btn-block"

@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     end
 
     # resources :query_points
-    # resources :adjust_points
+    resources :adjust_points
     # resources :request_dynamic_passwords
     resources :users do
       member do
