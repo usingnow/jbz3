@@ -44,11 +44,10 @@ class User < ActiveRecord::Base
     request_dynamic_password = RequestDynamicPassword.new
     request_dynamic_passwords << request_dynamic_password
 
-    dynamic_key = request_dynamic_password.process_spdb_api(request_dynamic_password.user.creditcard_num, create_rand_key)
-    if dynamic_key
-      # request_dynamic_password.key = dynamic_key
+    request_dynamic_password.dynamic_key = request_dynamic_password.process_spdb_api(request_dynamic_password.user.creditcard_num, create_rand_key)
+    if request_dynamic_password.dynamic_key
       request_dynamic_password.save
-      return dynamic_key
+      return request_dynamic_password.dynamic_key
     else
       logger.error "神马神马错误。"
       return

@@ -3,7 +3,7 @@ class RequestDynamicPassword < ActiveRecord::Base
   belongs_to :user
     
   def process_spdb_api(creditcard_num, dynamic_key)   
-    request_dynamic_psw(build_req(creditcard_num, dynamic_key))
+    request_dynamic_psw(build_req(creditcard_num, dynamic_key), dynamic_key)
   end
 
   private
@@ -16,7 +16,7 @@ class RequestDynamicPassword < ActiveRecord::Base
             }.to_json
     end
 
-  def request_dynamic_psw(req)
+  def request_dynamic_psw(req, dy_key)
     # UAT "http://172.30.122.161:8002/spdbcccLife/services/DynamicPsw?wsdl"
     # PRD "http://172.20.112.73:9000/spdbcccLife/services/DynamicPsw?wsdl"
     # Setup the UAT connection.
@@ -28,8 +28,10 @@ class RequestDynamicPassword < ActiveRecord::Base
     response = client.call(:request_dynamic_psw, message: { "in0" => req })
     self.response = response
     if self.save
-      if response.to_hash[:status] == '3'
-        return session[:dynamic_key]
+      # status 值在 response.to_hash 中的位置
+      if response.to_hash[:request_dynamic_psw_response][:out][39] == "3"
+        dynamic_key = dy_key
+        return dynamic_key
       else
         return false
       end

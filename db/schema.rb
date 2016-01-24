@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20160123114430) do
-
+ActiveRecord::Schema.define(version: 20160124031031) do
 
   create_table "adjust_points", force: :cascade do |t|
     t.string   "creditcard_num", limit: 255
@@ -114,6 +112,7 @@ ActiveRecord::Schema.define(version: 20160123114430) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "user_id",        limit: 4
+    t.string   "dynamic_key",    limit: 255
   end
 
   add_index "request_dynamic_passwords", ["user_id"], name: "index_request_dynamic_passwords_on_user_id", using: :btree

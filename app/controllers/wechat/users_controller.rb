@@ -27,18 +27,23 @@ class Wechat::UsersController < ApplicationController
     #   end
   end
 
+  # Todo: 这里使用了默认的 simple_for submit 方法，会浪费资源，等下一次迭代重构
   def login_by_sms
     @user = User.new
   end
   
   # 利用 simple_form 的 submit 来响应后台验证码的生成发送功能
   def create
-    @user = User.find_by(params[:creditcard_num])
-    session[:dynamic_key] = @user.request_dynamic_pd
+    if @user = User.find_by_creditcard_num(params[:user][:creditcard_num])
+      if @user.request_dynamic_pd
+        session[:user_id] = @user.id
+        redirect_to new_user_session_path
+      else
+        redirect_to wechat_users_login_by_sms_path
+      end
 
-    if @user.request_dynamic_pd
-      redirect_to new_user_session_path
     else
+      # flash[:alert] = "对不起，请注册后再登录，谢谢！"
       redirect_to wechat_users_login_by_sms_path
     end
 
