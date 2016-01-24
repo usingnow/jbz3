@@ -23,8 +23,7 @@ br
                 =  order.ref
               span.alert.alert-info.pull-right.wechat-small style= "padding: 5px"
                 = order.created_at.to_formatted_s(:db)
-              br
-              br
+              .clearfix
               - order.line_items.each do |item|
                 .row
                   .col-xs-12.col-sm-12
