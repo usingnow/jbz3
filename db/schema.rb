@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123170202) do
+ActiveRecord::Schema.define(version: 20160124043701) do
 
   create_table "adjust_points", force: :cascade do |t|
     t.string   "creditcard_num", limit: 255
@@ -95,13 +95,38 @@ ActiveRecord::Schema.define(version: 20160123170202) do
   end
 
   create_table "query_points", force: :cascade do |t|
-    t.string   "creditcard_num", limit: 255
-    t.text     "request",        limit: 65535
-    t.text     "response",       limit: 65535
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.integer  "order_id",       limit: 4
-    t.integer  "user_id",        limit: 4
+    t.string   "creditcard_num",                         limit: 255
+    t.text     "request",                                limit: 65535
+    t.text     "response",                               limit: 65535
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.integer  "order_id",                               limit: 4
+    t.integer  "user_id",                                limit: 4
+    t.string   "card_no",                                limit: 255
+    t.string   "account_aggregate_integral",             limit: 255
+    t.string   "account_aggregate_integral_symbol",      limit: 255
+    t.string   "account_convertibility_integral",        limit: 255
+    t.string   "account_convertibility_integral_symbol", limit: 255
+    t.string   "current_change_integral",                limit: 255
+    t.string   "current_change_integral_symbol",         limit: 255
+    t.string   "current_new_integral",                   limit: 255
+    t.string   "current_new_integral_symbol",            limit: 255
+    t.string   "adjust_integral",                        limit: 255
+    t.string   "adjust_integral_sign",                   limit: 255
+    t.string   "integral_freezing_mark",                 limit: 255
+    t.string   "integral_freezing_date",                 limit: 255
+    t.string   "name",                                   limit: 255
+    t.string   "bonus_point",                            limit: 255
+    t.string   "bonus_point_symbol",                     limit: 255
+    t.string   "into_integral",                          limit: 255
+    t.string   "into_integral_sign",                     limit: 255
+    t.string   "roll_out_integral",                      limit: 255
+    t.string   "roll_out_integral_symbol",               limit: 255
+    t.string   "mileage_convertible_cap",                limit: 255
+    t.string   "already_for_mileage",                    limit: 255
+    t.string   "available_integral",                     limit: 255
+    t.string   "available_integral_symbol",              limit: 255
+    t.string   "status",                                 limit: 255
   end
 
   add_index "query_points", ["order_id"], name: "index_query_points_on_order_id", using: :btree

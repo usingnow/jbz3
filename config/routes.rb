@@ -18,12 +18,21 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :orders 
+    resources :orders do
+      member do
+        get :query_points_for
+        get :adjust_points_for
+      end
+    end
 
-    resources :query_points
-    resources :adjust_points
-    resources :request_dynamic_passwords
-    resources :users
+    # resources :query_points
+    # resources :adjust_points
+    # resources :request_dynamic_passwords
+    resources :users do
+      member do
+        get :user_center_of
+      end
+    end
   end
 
     # The priority is based upon order of creation: first created -> highest priority.
