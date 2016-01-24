@@ -1,6 +1,6 @@
 class Wechat::UsersController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:login_by_sms, :create]
   before_action :set_user, only: [:show, :update, :destroy, :edit]
 
   layout 'wechat'
@@ -25,6 +25,23 @@ class Wechat::UsersController < ApplicationController
     #   format.html { render action: 'user_center' }
     #   format.json { render json: @user.errors, status: :unprocessable_entity }
     #   end
+  end
+
+  def login_by_sms
+    @user = User.new
+  end
+  
+  # 利用 simple_form 的 submit 来响应后台验证码的生成发送功能
+  def create
+    @user = User.find_by(params[:creditcard_num])
+    session[:dynamic_key] = @user.request_dynamic_pd
+
+    if @user.request_dynamic_pd
+      redirect_to new_user_session_path
+    else
+      redirect_to wechat_user_login_by_sms_path
+    end
+
   end
 
   private

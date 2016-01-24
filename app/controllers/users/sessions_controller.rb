@@ -10,6 +10,8 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   # def create
   #   super
+  # 删除不需要的session
+  #   session[:dynamic_password] =nil
   # end
 
   # DELETE /resource/sign_out
