@@ -28,7 +28,7 @@ class RequestDynamicPassword < ActiveRecord::Base
     response = client.call(:request_dynamic_psw, message: { "in0" => req })
     self.response = response
     if self.save
-      if reponse.to_hash[:status] == '3'
+      if response.to_hash[:status] == '3'
         return session[:dynamic_key]
       else
         return false
