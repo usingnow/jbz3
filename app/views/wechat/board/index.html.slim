@@ -1,6 +1,6 @@
 .container
   .row
-    = image_tag 'bar.png', width: '100%'
+    = image_tag 'banner.png', width: '100%'
 
   .row
     / .col-xs-12.col-sm-12
@@ -11,7 +11,7 @@
     .row
       .col-xs-3.col-sm-3
         = link_to wechat_jbz_sku_path(sku.id) do
-          = image_tag 'insurance.png', width: '100%'
+          = image_tag 'product.png', width: '100%'
       .col-xs-9.col-sm-9
         p = link_to sku.title, wechat_jbz_sku_path(sku.id)
         .row.price

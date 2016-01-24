@@ -2,7 +2,7 @@
   .row
     br
     .col-xs-3.col-sm-3
-      = image_tag 'insurance.png', width: '100%'
+      = image_tag 'product.png', width: '100%'
 
     .col-xs-9.col-sm-9.details
       h4 = @jbz_sku.title
@@ -30,14 +30,6 @@
             |元
       hr
       .row.text-muted
-        .col-xs-3.col-sm-3
-          p 销量：
-        .col-xs-9.col-sm-9
-          p.pull-right
-            = @jbz_sku.sales_volume
-            |份
-      hr
-      .row.text-muted
         .col-xs-8.col-sm-8
           p 公共轨道交通保障期限：
         .col-xs-4.col-sm-4
@@ -54,7 +46,7 @@
       hr
       .row.text-muted
         .col-xs-8.col-sm-8
-          p 承保年龄：
+          p 兑换年龄：
         .col-xs-4.col-sm-4
           p.pull-right
             = underwrite_age(@jbz_sku.product.age_starts_at, @jbz_sku.product.age_ends_at)
@@ -74,12 +66,16 @@
                       = fa_icon 'square-o', class: 'fa-stack-2x fa-fx'
                       = fa_icon 'rmb', class: 'fa-stack-1x fa-fx'
                     '  
-                    |保障利益
+                    |产品优势
                     span.pull-right
                       = fa_icon 'chevron-down', class: 'fa-fx icon-mid'
           #collapseOne.panel-collapse.collapse role="tabpanel" aria-labelledby="headingOne"
-            .panel-body
-              p = @jbz_sku.product.benifit
+            .panel-body.wechat-small
+              ol
+                li 积分返现与保障双重优惠；
+                li 产品有效期内，持卡人发生死亡，会将积分对应的原价以现金方式返还持卡人指定账户；
+                li 产品到期后，会将积分对应的原价以现金方式返还持卡人指定账户；
+                li 兑换成功后，将额外赠送持卡人一份一年期最高保额为50万的公轨道交通意外伤害保障，包含死亡及残疾双重保障。
         / 滑块二
         .panel.panel-default
           .panel-heading role="tab" id="headingTwo"
@@ -91,12 +87,16 @@
                       = fa_icon 'square-o', class: 'fa-stack-2x fa-fx'
                       = fa_icon 'list-ol', class: 'fa-stack-1x fa-fw'
                     ' 
-                    |换购须知
+                    |兑换须知
                     span.pull-right
                       = fa_icon 'chevron-down', class: 'fa-fx icon-mid'
           #collapseTwo.panel-collapse.collapse role="tabpanel" aria-labelledby="headingTwo"
-            .panel-body
-              p = @jbz_sku.product.acknowledgement
+            .panel-body.wechat-small
+              ol
+                li 持卡人必须确保卡片状态正常，且有兑换所需积分数量；该活动可参与卡种以浦发卡中心规定为准。
+                li 当日兑换、次日生效。
+                li 兑换成功后，持卡人可通过短信接收到公共轨道交通意外保障的保单号，请妥善保存。
+                li 产品到期后，积分对应的原价将自动转至持卡人指定账户，请确保账户准确。
         / 滑块三
         .panel.panel-default
           .panel-heading role="tab" id="headingThree"
@@ -113,7 +113,8 @@
                       = fa_icon 'chevron-down', class: 'fa-fx icon-mid'
           #collapseThree.panel-collapse.collapse role="tabpanel" aria-labelledby="headingThree"
             .panel-body
-              p = @jbz_sku.product.recommendation
+              p
+                |此次活动为金保证财富管理有限公司与浦发信用卡中心为浦发持卡人量身定做，持卡人可通过积分兑换该产品。产品兑换成功后，金保证财富管理有限公司将统一为持卡人换购一份由君康人寿提供的团体保险。产品到期后，金保证财富自动将持卡人对应的保险金以现金方式返还至持卡人指定的银行账户中。同时，金保证财富将额外赠送持卡人一份50万保额的公共轨道交通意外保障，该保障有效期一年。
       / 此处结束show页面的滑块
 
   .row
