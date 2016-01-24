@@ -38,11 +38,11 @@
             |年
       hr
       .row.text-muted
-        .col-xs-8.col-sm-8
-          p 积分储蓄可赎回期限：
-        .col-xs-4.col-sm-4
+        .col-xs-7.col-sm-7
+          p 自动返还原价的期限：
+        .col-xs-5.col-sm-5
           p.pull-right
-            = @jbz_sku.redemption
+            = redemption_period(@jbz_sku.redemption)
       hr
       .row.text-muted
         .col-xs-8.col-sm-8
@@ -119,7 +119,7 @@
 
   .row
     .col-xs-6.col-sm-6
-      a.btn.btn-info.btn-lg.btn-block
+      a.btn.btn-info.btn-lg.btn-block.disabled
         = fa_icon 'hand-o-up'
         ' 
         |立即换购
