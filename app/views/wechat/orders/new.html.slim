@@ -33,15 +33,7 @@ br
       = simple_form_for [:wechat, @order ], :input_html => { :class => "form-horizontal" } do |f|
         / - f.with_options :readonly => true do |b|
         = render partial: 'wechat/shared/userinfo', locals: { f: f }
-        = f.label "* 择您的开户行:  "
-        '
-        |
-        = f.select :bank, input_html: { class: "form-control" }
-          option 招商银行
-          option 农业银行
-          option 建设银行
-          option 工商银行
-        br
+        = f.input :bank, label: "选择您的开户行", as: :select, collection: ['招商银行', '中国农业银行', '中国建设银行', '中国工商银行' ]
         = f.input :debitcard_num, label: "银行卡号"
 
         / - if current_user.name == "" || current_user.id_card == "" || current_user.creditcard_num == ""
