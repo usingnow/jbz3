@@ -15,13 +15,21 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # def after_sign_up_path_for(resource)
+  #   # if resource.class.to_s == "User"
+  #   edit_wechat_user_path(resource)
+  #   # else
+  #   #   root_path
+  #   # end
+  # end
+
   # 用户登出后的界面，默认是 root_path，暂不需要改动，以下代码留作将来使用
   # def after_sign_out_path_for(resource)
-    # if resource == :user
-    #   root_path
-    # else
-    #   root_path
-    # end
+  #   if resource == :user
+  #     wechat_user_center_path
+  #   else
+  #     root_path
+  #   end
   # end
 
   def configure_permitted_parameters

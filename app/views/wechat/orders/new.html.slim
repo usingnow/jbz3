@@ -33,7 +33,7 @@ br
       = simple_form_for [:wechat, @order ], :input_html => { :class => "form-horizontal" } do |f|
         - f.with_options :readonly => true do |b|
           = render partial: 'wechat/shared/userinfo', locals: { f: b }
-          
+
         - if current_user.name == "" || current_user.id_card == "" || current_user.creditcard_num == ""
           = f.submit "请前往 \"用户中心\" -> \"我的信息\" 补足必要信息", class: "btn btn-info btn-lg btn-block disabled"
         - else

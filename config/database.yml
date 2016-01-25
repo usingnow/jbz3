@@ -49,7 +49,7 @@ test:
 #
 production:
   <<: *default
-  host: 10.1.4.55
+  host: 10.1.4.56
   database: jbz3_production
-  username: jbz3
+  username: root
   password: <%= ENV['JBZ3_DATABASE_PASSWORD'] %>

@@ -21,8 +21,13 @@ class Wechat::UsersController < ApplicationController
     else
       render 'user_center'
     end
-
   end
+  
+  def edit
+    
+  end
+
+  
 
   # 第一次上线先暂停短信验证登录，研究 devise 和 javascript 后再启用
   # def login_by_sms

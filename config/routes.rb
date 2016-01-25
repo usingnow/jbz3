@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     
     get 'user_center' => 'users#user_center'
     get 'user_order' => 'users#user_order'
-
+    
     # 第一次上线先暂停短信验证登录，研究 devise 和 javascript 后再启用
     # get 'users/login_by_sms'             
 
