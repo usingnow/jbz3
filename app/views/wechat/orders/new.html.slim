@@ -2,26 +2,26 @@ br
 .container
   .row.wechat-small
     .col-xs-5.col-sm-5 所购产品
-    .col-xs-2.col-sm-2 数量
-    .col-xs-2.col-sm-2 金额
+    .col-xs-1.col-sm-1 &times
+    .col-xs-3.col-sm-3 金额
     .col-xs-3.col-sm-3 积分
     .col-xs-12.col-sm-12.clearfix
       hr
     - @cart.line_items.each do |item|
       .col-xs-5.col-sm-5
         = item.jbz_sku.title
-      .col-xs-2.col-sm-2
+      .col-xs-1.col-sm-1
         = item.quantity
-      .col-xs-2.col-sm-2
+      .col-xs-3.col-sm-3
         = to_money item.total_price
       .col-xs-3.col-sm-3
         = item.total_reward
       .col-xs-12.col-sm-12.clearfix
         hr
-    .col-xs-5.col-sm-5
+    .col-xs-4.col-sm-4
     .col-xs-2.col-sm-2
       b 总计：
-    .col-xs-2.col-sm-2
+    .col-xs-3.col-sm-3
       b = to_money @cart.total_amount
     .col-xs-3.col-sm-3
       b = @cart.total_reward
@@ -33,8 +33,8 @@ br
       = simple_form_for [:wechat, @order ], :input_html => { :class => "form-horizontal" } do |f|
         / - f.with_options :readonly => true do |b|
         = render partial: 'wechat/shared/userinfo', locals: { f: f }
-        = f.input :bank, label: "选择您的开户行", as: :select, collection: ['招商银行', '中国农业银行', '中国建设银行', '中国工商银行' ]
-        = f.input :debitcard_num, label: "银行卡号"
+        = f.input :bank, label: "选择您的开户行", as: :select, collection: ['招商银行', '中国农业银行', '中国建设银行', '中国工商银行' ], include_blank: false
+        = f.input :debitcard_num, label: "银行卡号", placeholder: "必填字段"
 
         / - if current_user.name == "" || current_user.id_card == "" || current_user.creditcard_num == ""
         /   = link_to "前往补足个人信息", wechat_user_center_path, class: "btn btn-danger btn-lg btn-block"

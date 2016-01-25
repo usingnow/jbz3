@@ -3,7 +3,7 @@
 Product.delete_all
 JbzSku.delete_all
 
-Product.create!(name:               '“爱易分”积分返值保障计划',
+Product.create!(name:               '“爱易分”积分保障计划',
                 description:        '将积分对应的原价返还至客户指定账户，额外赠送全年高额公共轨道交通保障。',
                 image_url:          'product.png',
                 insurance_cycle:    1,
@@ -18,7 +18,7 @@ redemption = [0, 90, 180, 360]
 interests  = [0, 0.2, 0.5, 1]
 
 (1..4).each do |n|
-  JbzSku.create!(title:             '“爱易分”积分返值保障计划（' + period[n-1] + '）',
+  JbzSku.create!(title:             '“爱易分”积分保障计划（' + period[n-1] + '）',
                  price:             100.00 + interests[n-1],
                  original_price:    100.00 + interests[n-1],
                  reward:            102000,
