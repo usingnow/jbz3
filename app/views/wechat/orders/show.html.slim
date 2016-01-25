@@ -32,8 +32,22 @@
               .alert.alert-success.pull-right.wechat-small style= "padding: 5px; margin-bottom: 0px"
                 = item.redeemed_at.to_formatted_s(:db)
                 |赎回
-            -else
+            - elsif item.order.if_paid
               = button_to redeem_wechat_line_item_path(item.id), class: 'btn btn-danger btn-block' do
                 = fa_icon "money"
                 ' 
                 |赎回
+            - else
+              a.btn.btn-danger.btn-block.disabled
+                = fa_icon "money"
+                ' 
+                |赎回
+      hr
+        - if @order.if_paid
+          .alert.alert-success 积分扣除成功
+        - else
+          .alert.alert-danger 积分尚未扣除，不能赎回
+          = link_to "前往积分扣除环节", query_points_for_wechat_order_path(@order.id), class: "btn btn-info btn-lg btn-block"
+      hr
+        = link_to "返回订单中心", wechat_user_order_path, class: "btn btn-success btn-lg btn-block"
+

@@ -9,15 +9,15 @@
       - else
         - @orders.each do |order|
           span.alert.alert-warning.pull-left.wechat-small style= "padding: 5px"
-            =  order.ref
+            |订单号
+            = order.ref
           span.alert.alert-info.pull-right.wechat-small style= "padding: 5px"
             = order.created_at.to_formatted_s(:db)
           .clearfix
           - order.line_items.each do |item|
             .row
-              .col-xs-12.col-sm-12
-                p.wechat-small = item.jbz_sku.title
               .col-xs-8.col-sm-8
+                p.wechat-small = item.jbz_sku.title
                 p.wechat-small
                   |已兑换积分：
                   = item.quantity
@@ -39,17 +39,24 @@
                   ' 
                   = to_money subtotal(item.jbz_sku.price, item.quantity)
               .col-xs-4.col-sm-4
-                - if item.redeemed_at
-                  .alert.alert-success.pull-right.wechat-small style= "padding: 5px; margin-bottom: 0px"
-                    = item.redeemed_at.to_formatted_s(:db)
-                    |赎回
-                -else
-                  = button_to redeem_wechat_line_item_path(item.id), class: 'btn btn-danger btn-block' do
-                    = fa_icon "money"
-                    ' 
-                    |赎回
+                - if item.order.if_paid
+                  span.alert.alert-success.pull-right.wechat-small style= "padding: 5px"
+                    |保障生效日
+                    = order.created_at.to_formatted_s(:db)
+                - else
+                  span.alert.alert-danger.pull-right.wechat-small style= "padding: 5px"
+                    |要扣除积分后才能生效保障
+                / - if item.redeemed_at
+                /   .alert.alert-success.pull-right.wechat-small style= "padding: 5px; margin-bottom: 0px"
+                /     = item.redeemed_at.to_formatted_s(:db)
+                /     |赎回
+                / -else
+                /   = button_to redeem_wechat_line_item_path(item.id), class: 'btn btn-danger btn-block' do
+                /     = fa_icon "money"
+                /     ' 
+                /     |赎回
 
             hr style="margin-top: 6px; margin-bottom: 6px"
           .clearfix
-            = link_to '订单详情', wechat_order_path(order.id), class: "btn btn-success"
+            = link_to '订单详情，进入赎回', wechat_order_path(order.id), class: "btn btn-success btn-block"
             hr
