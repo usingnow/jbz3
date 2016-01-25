@@ -2,11 +2,11 @@
   .row
     .col-xs-12.col-sm-12
       h4 订单详情
+      hr
       - @order.line_items.each do |item|
         .row
-          .col-xs-12.col-sm-12
-            p.wechat-small = item.jbz_sku.title
           .col-xs-8.col-sm-8
+            p.wechat-small = item.jbz_sku.title
             p.wechat-small
               |已兑换积分：
               = item.quantity
@@ -29,11 +29,18 @@
               = to_money subtotal(item.jbz_sku.price, item.quantity)
           .col-xs-4.col-sm-4
             - if item.redeemed_at
-              .alert.alert-success.pull-right.wechat-small style= "padding: 5px; margin-bottom: 0px"
-                = item.redeemed_at.to_formatted_s(:db)
-                |赎回
+              - if (@order.created_at + item.jbz_sku.redemption.day).future?
+                .alert.alert-info.pull-right.wechat-small style= "padding: 5px; margin-bottom: 0px"
+                  = item.redeemed_at.to_formatted_s(:db)
+                  br
+                  |提前赎回
+              - else
+                .alert.alert-success.pull-right.wechat-small style= "padding: 5px; margin-bottom: 0px"
+                  = item.redeemed_at.to_formatted_s(:db)
+                  br
+                  |正常赎回
             - elsif item.order.if_paid
-              = button_to redeem_wechat_line_item_path(item.id), class: 'btn btn-danger btn-block' do
+              = button_to redeem_wechat_line_item_path(item.id), class: 'btn btn-danger btn-block', data: {confirm: "提前赎回将按即时版返还原价。" } do
                 = fa_icon "money"
                 ' 
                 |赎回
@@ -42,12 +49,12 @@
                 = fa_icon "money"
                 ' 
                 |赎回
+        hr
+      - if @order.if_paid
+        .alert.alert-success 积分扣除成功
+      - else
+        .alert.alert-danger 积分尚未扣除，不能赎回
+        = link_to "前往积分扣除环节", query_points_for_wechat_order_path(@order.id), class: "btn btn-info btn-lg btn-block"
       hr
-        - if @order.if_paid
-          .alert.alert-success 积分扣除成功
-        - else
-          .alert.alert-danger 积分尚未扣除，不能赎回
-          = link_to "前往积分扣除环节", query_points_for_wechat_order_path(@order.id), class: "btn btn-info btn-lg btn-block"
-      hr
-        = link_to "返回订单中心", wechat_user_order_path, class: "btn btn-success btn-lg btn-block"
+        = link_to "返回申请", root_path, class: "btn btn-success btn-lg btn-block"
 
