@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160124112517) do
+ActiveRecord::Schema.define(version: 20160125052714) do
 
   create_table "adjust_points", force: :cascade do |t|
     t.string   "creditcard_num",                         limit: 255
@@ -103,6 +103,9 @@ ActiveRecord::Schema.define(version: 20160124112517) do
     t.decimal  "total_reward",               precision: 10
     t.boolean  "if_reward_paid"
     t.string   "dynamic_key",    limit: 255
+    t.string   "bank",           limit: 255
+    t.string   "debitcard_num",  limit: 255
+    t.boolean  "if_paid"
   end
 
   add_index "orders", ["ref"], name: "index_orders_on_ref", using: :btree

@@ -24,9 +24,9 @@ class Wechat::LineItemsController < ApplicationController
   def redeem
     @line_item.redeemed_at = DateTime.current
     if @line_item.save
-      redirect_to wechat_user_center_url, notice: "订单已经成功申请请赎回。"
+      redirect_to wechat_user_order_url, notice: "订单已经成功申请请赎回。"
     else
-      redirect_tp wechat_user_center_url, alert: "订单赎回申请失败，请联系管理员。"
+      redirect_tp wechat_user_order_url, alert: "订单赎回申请失败，请联系管理员。"
     end
   end
 

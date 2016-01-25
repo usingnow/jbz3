@@ -20,7 +20,7 @@ class Wechat::AdjustPointsController < ApplicationController
 
     respond_to do |format|
       if @adjust_point.save
-        format.html { redirect_to adjust_points_for_wechat_order_path(session[:order_id]), notice: '请确认以下信息。' }
+        format.html { redirect_to adjust_points_for_wechat_order_path(session[:order_id]), notice: '请输入收到的随机码。' }
       else
         format.html { redirect_to wechat_user_center_url, alert: "暂时无法扣除积分。请稍后尝试，或者联系管理员。" }
       end
