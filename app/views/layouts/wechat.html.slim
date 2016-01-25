@@ -19,10 +19,20 @@ html lang="en"
     
 
   body
-    = yield
+    .container
+      .row
+        .col-xs-12.col-sm-12
+          .jbz-notice.clearfix
+            - if notice
+              #notice.alert.alert-success style="margin-bottom: 8px;"
+                = notice
+                a.close type="button" data-dismiss="alert" &times;
+            - elsif alert
+              #notice.alert.alert-error style="margin-bottom: 8px;"
+                = alert
+                a.close type="button" data-dismiss="alert" &times;
 
-  = javascript_include_tag "partialchange"
-  = javascript_include_tag "dynamicpd"
+    = yield
 
 
   .navbar.navbar-default.navbar-fixed-bottom
@@ -98,3 +108,4 @@ html lang="en"
                     |账号登陆
                     i class='fa fa-chevron-right fa-fw pull-right' style="line-height: 20px;"
               end
+  = javascript_include_tag "partialchange"
