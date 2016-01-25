@@ -12,19 +12,24 @@ class Wechat::OrdersController < ApplicationController
     end
     
     @order = Order.new
+
+    # 用户未登录时不能进行“加入购物车”的逻辑，后台自动创建用户的逻辑之后加到“立即购买”中
     # 新建订单的时候，根据用户是否登录，显示不同的 form
-    if user_signed_in? 
-      @order.user_id = current_user.id
-      @order.name = current_user.name? ? current_user.name : "尚待填写"
-      @order.cellphone = current_user.cellphone
-      @order.id_card = current_user.id_card? ? current_user.id_card : "尚待填写" 
-      @order.creditcard_num = current_user.creditcard_num? ? current_user.creditcard_num : "尚待填写"
-      @order.email = current_user.email? ? current_user.email : "尚待填写"
-      @order.address = current_user.address? ? current_user.address : "尚待填写"
-    end
+    # if user_signed_in? 
+    @order.user_id = current_user.id
+    @order.name = current_user.name? ? current_user.name : "尚待填写"
+    @order.cellphone = current_user.cellphone
+    @order.id_card = current_user.id_card? ? current_user.id_card : "尚待填写" 
+    @order.creditcard_num = current_user.creditcard_num? ? current_user.creditcard_num : "尚待填写"
+    @order.email = current_user.email? ? current_user.email : "尚待填写"
+    # else
+      
+    #   redirect_to new_user_session_url, notice: "请先登录后再选购，谢谢！"
+    # end
   end
 
   def create
+
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
     @order.ref = Order.create_ref
@@ -38,7 +43,8 @@ class Wechat::OrdersController < ApplicationController
           Cart.destroy(session[:cart_id])
           session[:cart_id] = nil
 
-        else 
+        # else 
+          # 用户未登录时不能进行“加入购物车”的逻辑，后台自动创建用户的逻辑之后加到“立即购买”中
           # 逻辑有误，此时 order 已经保存，手机号必定重复，而且 user 也会建立，这个方法不管用
 
           # Rails 使用有误，改用正确的 Rais api 实现。先着手解决浦发api的问题，再回来处理。
@@ -48,16 +54,16 @@ class Wechat::OrdersController < ApplicationController
           #   end
           # end
 
-          session[:order_id] = @order.id
+          # session[:order_id] = @order.id
 
-          # 路人用户在创建订单的时候，后台自动创建 user 账户，并且将订单挂到该新用户账户
-          @usernow = User.create!(name: @order.name, cellphone: @order.cellphone, password: "12121212", 
-                                  creditcard_num: @order.creditcard_num, id_card: @order.id_card, 
-                                  address: @order.address, email: @order.email)
-          @usernow.orders << @order
-          Cart.destroy(session[:cart_id])
-          session[:cart_id] = nil
-
+          # # 路人用户在创建订单的时候，后台自动创建 user 账户，并且将订单挂到该新用户账户
+          # @usernow = User.create!(name: @order.name, cellphone: @order.cellphone, password: "12121212", 
+          #                         creditcard_num: @order.creditcard_num, id_card: @order.id_card, 
+          #                         address: @order.address, email: @order.email)
+          # @usernow.orders << @order
+          # Cart.destroy(session[:cart_id])
+          # session[:cart_id] = nil
+          
         end
         format.html { redirect_to query_points_for_wechat_order_path(@order.id) }
         format.json { render action: 'show', status: :created, location: @order }

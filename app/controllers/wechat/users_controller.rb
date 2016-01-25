@@ -7,19 +7,27 @@ class Wechat::UsersController < ApplicationController
 
   # 用户中心首页
   def user_center
-    @orders = current_user.orders
     @user = current_user
+  end
+
+  def user_order
+    @orders = current_user.orders
   end
 
   def update
     # @user = User.find(params[:id])                已经:set_user了，这行应该没用，保险起见，暂且先注释
     if @user.update(user_params)
-      redirect_to wechat_user_center_path
+      render 'user_center'
     else
       render 'user_center'
     end
-
   end
+  
+  def edit
+    
+  end
+
+  
 
   # 第一次上线先暂停短信验证登录，研究 devise 和 javascript 后再启用
   # def login_by_sms

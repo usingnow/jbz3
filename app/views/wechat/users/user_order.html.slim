@@ -1,0 +1,51 @@
+br
+.container
+  .row
+    .col-xs-12.col-sm-12
+      - if @orders.empty?
+        .alert.alert-warning
+          |您还没有订单。
+        = link_to "立刻前往选购", root_path, class: 'btn btn-primary btn-lg btn-block'
+      - else
+        - @orders.each do |order|
+          span.alert.alert-warning.pull-left.wechat-small style= "padding: 5px"
+            =  order.ref
+          span.alert.alert-info.pull-right.wechat-small style= "padding: 5px"
+            = order.created_at.to_formatted_s(:db)
+          .clearfix
+          - order.line_items.each do |item|
+            .row
+              .col-xs-12.col-sm-12
+                p.wechat-small = item.jbz_sku.title
+              .col-xs-8.col-sm-8
+                p.wechat-small
+                  |已兑换积分：
+                  = item.quantity
+                  ' 
+                  |&times 
+                  = item.jbz_sku.reward
+                  ' 
+                  |=
+                  ' 
+                  = subtotal(item.jbz_sku.reward, item.quantity)
+                p.wechat-small.wechat-no-margin
+                  |可赎回金额：
+                  = item.quantity
+                  ' 
+                  |&times 
+                  = to_money item.jbz_sku.price
+                  ' 
+                  |=
+                  ' 
+                  = to_money subtotal(item.jbz_sku.price, item.quantity)
+              .col-xs-4.col-sm-4
+                - if item.redeemed_at
+                  .alert.alert-success.pull-left.wechat-small style= "padding: 5px; margin-bottom: 0px"
+                    = item.redeemed_at.to_formatted_s(:db)
+                    |赎回
+                -else
+                  = button_to redeem_wechat_line_item_path(item.id), class: 'btn btn-danger btn-block' do
+                    = fa_icon "money"
+                    ' 
+                    |赎回
+            hr  

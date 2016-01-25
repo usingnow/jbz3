@@ -66,10 +66,17 @@ html lang="en"
                       i class='fa fa-chevron-right fa-fw pull-right' style="line-height: 20px;"
                     li.divider role='separator'
                 li 
+                  = link_to wechat_user_order_path do
+                    = fa_icon 'icon-briefcase', class: "fa-fw"
+                    ' 
+                    |我的订单
+                    i class='fa fa-chevron-right fa-fw pull-right' style="line-height: 20px;"
+                li.divider role='separator'
+                li 
                   = link_to wechat_user_center_path do
                     = fa_icon 'th-large', class: "fa-fw"
                     ' 
-                    |用户中心
+                    |我的账户
                     i class='fa fa-chevron-right fa-fw pull-right' style="line-height: 20px;"
                 li.divider role='separator'
                 li 

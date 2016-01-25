@@ -4,16 +4,13 @@
       h3 新用户注册
 
       = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-        = f.error_notification
-
+        / = f.error_notification
         .form-inputs
           br
           = f.input :cellphone, label: false, required: true, autofocus: true, placeholder: '手机号'
-          br
+          = f.input :creditcard_num, label: false, placeholder: '浦发信用卡号'
           = f.input :password, label: false, placeholder: '密码', required: true
-          br
           = f.input :password_confirmation, placeholder: '确认密码', label: false, required: true
-          br
 
         .form-actions
           = f.button :submit, value: "创建账户", class: "btn btn-primary"

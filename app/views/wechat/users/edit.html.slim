@@ -1,0 +1,9 @@
+br
+.container
+  .row
+    .col-xs-12.col-sm-12
+      = simple_form_for [:wechat, @user], input_html: { class: "form-horizontal" } do |b|
+        / = b.error_notification
+          = render partial: 'wechat/shared/userinfo', locals: { f: b }
+        / .form-actions
+        = b.button :submit, value: "保存", class: "btn btn-info"
