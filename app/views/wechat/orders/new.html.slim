@@ -33,7 +33,7 @@ br
       = simple_form_for [:wechat, @order ], :input_html => { :class => "form-horizontal" } do |f|
         / - f.with_options :readonly => true do |b|
         = render partial: 'wechat/shared/userinfo', locals: { f: f }
-        = f.label "择您的开户行:  "
+        = f.label "* 择您的开户行:  "
         '
         |
         = f.select :bank, input_html: { class: "form-control" }
