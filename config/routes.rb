@@ -29,6 +29,10 @@ Rails.application.routes.draw do
         get :query_points_for
         get :adjust_points_for
       end
+      collection do
+        get :search_by_id_card_for
+        get :result_of_search_by_id_card
+      end
     end
 
     # resources :query_points

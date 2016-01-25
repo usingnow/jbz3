@@ -1,0 +1,50 @@
+.container
+  .row
+    .col-xs-12.col-sm-12
+
+      h4 查询结果
+      hr
+
+      - @orders.each do |order|
+        span.alert.alert-warning.pull-left.wechat-small style= "padding: 5px"
+          |订单号
+          = order.ref
+        span.alert.alert-info.pull-right.wechat-small style= "padding: 5px"
+          = order.created_at.to_formatted_s(:db)
+        .clearfix
+        - order.line_items.each do |item|
+          .row
+            .col-xs-8.col-sm-8
+              p.wechat-small = item.jbz_sku.title
+              p.wechat-small
+                |已兑换积分：
+                = item.quantity
+                ' 
+                |&times 
+                = item.jbz_sku.reward
+                ' 
+                |=
+                ' 
+                = subtotal(item.jbz_sku.reward, item.quantity)
+              p.wechat-small.wechat-no-margin
+                |可赎回金额：
+                = item.quantity
+                ' 
+                |&times 
+                = to_money item.jbz_sku.price
+                ' 
+                |=
+                ' 
+                = to_money subtotal(item.jbz_sku.price, item.quantity)
+            .col-xs-4.col-sm-4
+              - if item.order.if_paid
+                span.alert.alert-success.pull-right.wechat-small style= "padding: 5px"
+                  |保障生效日
+                  = order.created_at.to_formatted_s(:db)
+              - else
+                span.alert.alert-danger.pull-right.wechat-small style= "padding: 5px"
+                  |要扣除积分后才能生效保障
+          hr style="margin-top: 6px; margin-bottom: 6px"
+        .clearfix
+          = link_to '订单详情，进入赎回', wechat_order_path(order.id), class: "btn btn-success btn-block"
+          hr

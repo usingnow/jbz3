@@ -125,14 +125,14 @@
     /     ' 
     /     |立即换购
     .col-xs-12.col-sm-12
-      - if user_signed_in?
-        = link_to wechat_line_items_path(jbz_sku_id: @jbz_sku), method: :post, class: "btn btn-primary btn-lg btn-block" do
-          = fa_icon 'shopping-cart'
-          ' 
-          |立即换购
-      - else
-        = link_to new_user_session_path, class: "btn btn-danger btn-lg btn-block" do
-          = fa_icon 'shopping-cart'
-          ' 
-          |立即换购
-      end
+      / - if user_signed_in?
+      = link_to wechat_line_items_path(jbz_sku_id: @jbz_sku), method: :post, class: "btn btn-primary btn-lg btn-block" do
+        = fa_icon 'shopping-cart'
+        ' 
+        |立即换购
+      / - else
+      /   = link_to new_user_session_path, class: "btn btn-danger btn-lg btn-block" do
+      /     = fa_icon 'shopping-cart'
+      /     ' 
+      /     |立即换购
+      / end

@@ -15,7 +15,7 @@ class Wechat::LineItemsController < ApplicationController
         format.json { render :show, status: :created, location: @line_item }
       end
     else
-      flash[:alert] = "联系客服邮箱：3353512440@qq.com。" # 修正wording。
+      # flash[:alert] = "联系客服邮箱：3353512440@qq.com。" # 修正wording。
       format.html { render :new }
       format.json { render json: @line_item.errors, status: :unprocessable_entity }
     end
@@ -24,9 +24,9 @@ class Wechat::LineItemsController < ApplicationController
   def redeem
     @line_item.redeemed_at = DateTime.current
     if @line_item.save
-      redirect_to wechat_user_order_url, notice: "订单已经成功申请请赎回。"
+      redirect_to wechat_order_path(@line_item.order.id), notice: "订单已经成功申请请赎回。"
     else
-      redirect_tp wechat_user_order_url, alert: "订单赎回申请失败，请联系管理员。"
+      redirect_tp root_url, alert: "订单赎回申请失败，请联系管理员。"
     end
   end
 

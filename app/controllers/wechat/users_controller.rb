@@ -1,6 +1,6 @@
 class Wechat::UsersController < ApplicationController
 
-  before_filter :authenticate_user!, except: [:login_by_sms, :create]
+  # before_filter :authenticate_user!, except: [:login_by_sms, :create]
   before_action :set_user, only: [:show, :update, :destroy, :edit]
 
   layout 'wechat'
