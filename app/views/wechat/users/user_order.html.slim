@@ -1,7 +1,7 @@
-br
 .container
   .row
     .col-xs-12.col-sm-12
+      h4 订单中心
       - if @orders.empty?
         .alert.alert-warning
           |您还没有订单。
@@ -40,7 +40,7 @@ br
                   = to_money subtotal(item.jbz_sku.price, item.quantity)
               .col-xs-4.col-sm-4
                 - if item.redeemed_at
-                  .alert.alert-success.pull-left.wechat-small style= "padding: 5px; margin-bottom: 0px"
+                  .alert.alert-success.pull-right.wechat-small style= "padding: 5px; margin-bottom: 0px"
                     = item.redeemed_at.to_formatted_s(:db)
                     |赎回
                 -else
@@ -48,4 +48,8 @@ br
                     = fa_icon "money"
                     ' 
                     |赎回
-            hr  
+
+            hr style="margin-top: 6px; margin-bottom: 6px"
+          .clearfix
+            = link_to '订单详情', wechat_order_path(order.id), class: "btn btn-success"
+            hr
