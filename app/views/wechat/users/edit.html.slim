@@ -2,8 +2,9 @@ br
 .container
   .row
     .col-xs-12.col-sm-12
+      label.text-danger 补齐用户信息才能正确下单哦～
       = simple_form_for [:wechat, @user], input_html: { class: "form-horizontal" } do |b|
         / = b.error_notification
-          = render partial: 'wechat/shared/userinfo', locals: { f: b }
+        = render partial: 'wechat/shared/userinfo', locals: { f: b }
         / .form-actions
-        = b.button :submit, value: "保存", class: "btn btn-info"
+        = b.button :submit, value: "保存", class: "btn btn-info btn-block"

@@ -24,7 +24,6 @@ class Wechat::UsersController < ApplicationController
   end
   
   def edit
-    
   end
 
   

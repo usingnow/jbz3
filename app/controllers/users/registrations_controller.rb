@@ -39,6 +39,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # protected
 
+  # 注册后强制要求用户更改信息
+  def after_sign_up_path_for(resource)
+    # if resource.class.to_s == "User"
+    edit_wechat_user_path(resource)
+    # else
+    #   root_path
+    # end
+  end
+
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.for(:sign_up) << :attribute
