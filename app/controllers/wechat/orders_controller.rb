@@ -118,6 +118,6 @@ class Wechat::OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:name, :creditcard_num, :email, :cellphone, :address, :id_card, :ref, :dynamic_key)
+      params.require(:order).permit(:name, :creditcard_num, :email, :cellphone, :address, :id_card, :ref, :dynamic_key, :bank, :debitcard_num)
     end
 end

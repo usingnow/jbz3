@@ -7,10 +7,11 @@ br
         - b.with_options :readonly => true do |b|
           = render partial: 'wechat/shared/userinfo', locals: { f: b }
         / .form-actions
-        a.btn.btn-primary id="enableinfoupdate" 修改
+        a.btn.btn-info.btn-block id="enableinfoupdate" 修改
+        / 锁定 按钮，感觉是多余的，细节再看
+        / '
+        / |
+        / a.btn.btn-warning disabled="true" id="disableinfoupdate" 锁定
         '
         |
-        a.btn.btn-warning disabled="true" id="disableinfoupdate" 锁定
-        '
-        |
-        = b.button :submit, id: "infosave", value: "保存", disabled: "disabled", class: "btn btn-info"
+        = b.button :submit, id: "infosave", value: "保存", disabled: "disabled", class: "btn btn-success btn-block"
