@@ -11,8 +11,7 @@
             / <img src="images/hp_long_20160125_02.gif" width="284" height="556" alt="">
             = image_tag 'hp_long_20160125_02.gif', width: "100%"
           td
-            a href="http://uat.spdb.jinbaozheng.com:7001/wechat/board/index"
-              / <img src="images/request.gif" width="348" height="76" border="0" alt="">
+            = link_to wechat_board_index_path do
               = image_tag 'request.gif', width: "100%", border: "0"
           td rowspan="6"
             / <img src="images/hp_long_20160125_04.gif" width="268" height="556" alt="">
@@ -23,8 +22,7 @@
             = image_tag 'hp_long_20160125_05.gif', width: "100%"
         tr
           td
-            a href="http://uat.spdb.jinbaozheng.com:7001/wechat/board/legal_announcement"
-              / <img src="images/rules.gif" width="348" height="78" border="0" alt="">
+            = link_to wechat_board_legal_announcement_path do
               = image_tag 'rules.gif', width: "100%", border: "0"
         tr
           td
@@ -32,8 +30,7 @@
             = image_tag 'hp_long_20160125_07.gif', width: "100%"
         tr
           td
-            a href="http://uat.spdb.jinbaozheng.com:7001/wechat/board/index"
-              / <img src="images/progress.jpg" width="348" height="66" border="0" alt="">
+            = link_to search_by_id_card_for_wechat_orders_path do
               = image_tag 'progress.jpg', width: "100%", border: "0"
         tr
           td

@@ -31,8 +31,8 @@ br
       / 用户 登录 时自动填充用户信息
       / - if user_signed_in?
       = simple_form_for [:wechat, @order ], :input_html => { :class => "form-horizontal" } do |f|
-        - f.with_options :readonly => true do |b|
-          = render partial: 'wechat/shared/userinfo', locals: { f: b }
+        / - f.with_options :readonly => true do |b|
+        = render partial: 'wechat/shared/userinfo', locals: { f: f }
         = f.label "择您的开户行"
         = f.select :bank, input_html: { class: "form-control" }
           option 中国银行
@@ -42,10 +42,10 @@ br
         br
         = f.input :debitcard_num, label: "银行卡号"
 
-        - if current_user.name == "" || current_user.id_card == "" || current_user.creditcard_num == ""
-          = link_to "前往补足个人信息", wechat_user_center_path, class: "btn btn-danger btn-lg btn-block"
-        - else
-          = f.submit "确认订单", class: "btn btn-info btn-lg btn-block"
+        / - if current_user.name == "" || current_user.id_card == "" || current_user.creditcard_num == ""
+        /   = link_to "前往补足个人信息", wechat_user_center_path, class: "btn btn-danger btn-lg btn-block"
+        / - else
+        = f.submit "确认订单", class: "btn btn-info btn-lg btn-block"
               
       / 用户未登录时不能进行“加入购物车”的逻辑，后台自动创建用户的逻辑之后加到“立即购买”中
       / - else

@@ -1,0 +1,10 @@
+.container
+  .row
+    .col-xs-12.col-sm-12
+      h4 查询进度
+      hr
+      = form_tag result_of_search_by_id_card_wechat_orders_path, :method => 'get', :class => "form-group" do
+        = text_field_tag :search, params[:search], :class => "form-control", :placeholder => "请输入您的身份证号"
+        br
+        br
+        = submit_tag "搜索订单", :name => nil, :class => "btn btn-lg btn-primary btn-block"

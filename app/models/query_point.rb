@@ -1,5 +1,5 @@
 class QueryPoint < ActiveRecord::Base
-  belongs_to :user
+  # belongs_to :user
   belongs_to :order
 
   def process_spdb_api(order)
