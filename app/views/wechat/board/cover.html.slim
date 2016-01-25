@@ -1,11 +1,52 @@
 .container.jbz-cover
   .row
     .col-xs-12.col-sm-12
-      .jbz-cover
-        = image_tag 'cover-bg.jpg', width: "100%"
+      table id="Table_01" width="100%" border="0" cellpadding="0" cellspacing="0"
+        tr
+          td colspan="3"
+            / <img src="images/hp_long_20160125_01.gif" width="900" height="1042" alt="">
+            = image_tag 'hp_long_20160125_01.gif', width: "100%"
+        tr
+          td rowspan="6"
+            / <img src="images/hp_long_20160125_02.gif" width="284" height="556" alt="">
+            = image_tag 'hp_long_20160125_02.gif', width: "100%"
+          td
+            a href="http://uat.spdb.jinbaozheng.com:7001/wechat/board/index"
+              / <img src="images/request.gif" width="348" height="76" border="0" alt="">
+              = image_tag 'request.gif', width: "100%", border: "0"
+          td rowspan="6"
+            / <img src="images/hp_long_20160125_04.gif" width="268" height="556" alt="">
+            = image_tag 'hp_long_20160125_04.gif', width: "100%"
+        tr
+          td
+            / <img src="images/hp_long_20160125_05.gif" width="348" height="99" alt="">
+            = image_tag 'hp_long_20160125_05.gif', width: "100%"
+        tr
+          td
+            a href="http://uat.spdb.jinbaozheng.com:7001/wechat/board/legal_announcement"
+              / <img src="images/rules.gif" width="348" height="78" border="0" alt="">
+              = image_tag 'rules.gif', width: "100%", border: "0"
+        tr
+          td
+            / <img src="images/hp_long_20160125_07.gif" width="348" height="58" alt="">
+            = image_tag 'hp_long_20160125_07.gif', width: "100%"
+        tr
+          td
+            a href="http://uat.spdb.jinbaozheng.com:7001/wechat/board/index"
+              / <img src="images/progress.jpg" width="348" height="66" border="0" alt="">
+              = image_tag 'progress.jpg', width: "100%", border: "0"
+        tr
+          td
+            / <img src="images/hp_long_20160125_09.gif" width="348" height="179" alt="">
+            = image_tag 'hp_long_20160125_09.gif', width: "100%"
 
-        = link_to "", wechat_board_index_url, class: 'jbz-apply'
 
-        = link_to "", wechat_board_legal_announcement_url, class: 'jbz-legal-announcement'
 
-        = link_to "", new_user_session_path, class: 'jbz-check-progress'
+        / .jbz-cover
+        / = image_tag 'cover-bg.jpg', width: "100%"
+
+        / = link_to "", wechat_board_index_url, class: 'jbz-apply'
+
+        / = link_to "", wechat_board_legal_announcement_url, class: 'jbz-legal-announcement'
+
+        / = link_to "", new_user_session_path, class: 'jbz-check-progress'
