@@ -38,12 +38,17 @@ html lang="en"
   .navbar.navbar-default.navbar-fixed-bottom
     .container
       .row
-        .col-xs-6.col-sm-6
+        .col-xs-4.col-sm-4
           = link_to root_path, class: "btn btn-primary navbar-btn btn-block" do 
             = fa_icon 'home'
             ' 
             |首页
-        .col-xs-6.col-sm-6
+        .col-xs-4.col-sm-4
+          = link_to wechat_board_legal_announcement_path, class: "btn btn-success navbar-btn btn-block" do 
+            = fa_icon 'file-text'
+            ' 
+            |活动细则
+        .col-xs-4.col-sm-4
           .dropup
             a.btn.btn-warning.navbar-btn.btn-block.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="downupMenu"
               = fa_icon 'user'
