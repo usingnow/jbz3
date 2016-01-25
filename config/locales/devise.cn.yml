@@ -20,6 +20,7 @@ cn:
       invalid_token: 'authentication token 非法.'
       timeout: '您的登录时间已经过期,在下一步操作之前请重新登录.'
       inactive: '您的账号还没有被激活.'
+      not_found_in_database: '用户不存在.'
     sessions:
       signed_in: '登录成功.'
       signed_out: '注销成功.'
