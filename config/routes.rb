@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   namespace :wechat do
     get 'board/index'
+    get 'board/cover'
+    get 'board/legal_announcement'
     
     get 'user_center' => 'users#user_center'
     get 'user_order' => 'users#user_order'

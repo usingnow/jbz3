@@ -1,4 +1,5 @@
 module Wechat::OrdersHelper
-  def redemption_period
+  def redemption_button(redemption)
+    
   end
 end
