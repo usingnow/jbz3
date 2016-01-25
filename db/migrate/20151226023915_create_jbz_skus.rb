@@ -10,7 +10,7 @@ class CreateJbzSkus < ActiveRecord::Migration
       t.integer :product_id
       t.string :ref
 
-      t.string  :redemption
+      t.integer  :redemption
 
       t.timestamps null: false
     end
