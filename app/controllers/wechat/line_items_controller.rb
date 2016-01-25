@@ -11,7 +11,7 @@ class Wechat::LineItemsController < ApplicationController
 
     if @line_item.save
       respond_to do |format|
-        format.html { redirect_to [:wechat, @line_item.cart], notice: '您刚选购的产品已经成功加入了购物车。' }
+        format.html { redirect_to [:wechat, @line_item.cart], notice: '您刚选购的产品已经成功。' }
         format.json { render :show, status: :created, location: @line_item }
       end
     else
@@ -24,7 +24,7 @@ class Wechat::LineItemsController < ApplicationController
   def redeem
     @line_item.redeemed_at = DateTime.current
     if @line_item.save
-      redirect_to wechat_order_path(@line_item.order.id), notice: "订单已经成功申请请赎回。"
+      redirect_to wechat_order_path(@line_item.order.id), notice: "订单已经成功申请赎回。"
     else
       redirect_tp root_url, alert: "订单赎回申请失败，请联系管理员。"
     end
