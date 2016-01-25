@@ -4,10 +4,13 @@
       br
       / = bootstrap_flash
 
-      = button_to [:wechat, @cart], method: :delete, data: { confirm: '确定要清空购物车？'}, class: "btn btn-sm btn-danger" do
+      = button_to [:wechat, @cart], method: :delete, data: { confirm: '确定要清空购物车？'}, class: "btn btn-sm btn-danger pull-left" do
         = fa_icon 'trash-o'
         ' 
         |清空购物车
+
+      = link_to "活动细则", wechat_board_legal_announcement_url, class: "btn btn-sm btn-info pull-right"
+      .clearfix
       hr
   .row.wechat-small
     .col-xs-5.col-sm-5 所购产品
