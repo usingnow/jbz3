@@ -34,7 +34,7 @@ br
         / - f.with_options :readonly => true do |b|
         = render partial: 'wechat/shared/userinfo', locals: { f: f }
         = f.input :bank, label: "请选择您的开户行", as: :select, collection: ['招商银行', '中国农业银行', '中国建设银行', '中国工商银行' ], include_blank: false
-        = f.input :debitcard_num, label: "返还原价的银行卡号(借记卡)", placeholder: "必填字段"
+        = f.input :debitcard_num, label: "返还原价的银行卡号（借记卡）", placeholder: "必填字段"
 
         / - if current_user.name == "" || current_user.id_card == "" || current_user.creditcard_num == ""
         /   = link_to "前往补足个人信息", wechat_user_center_path, class: "btn btn-danger btn-lg btn-block"
