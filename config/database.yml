@@ -53,3 +53,4 @@ production:
   database: <%= ENV['JBZ3_PROD_DATABASE_NAME'] %>
   username: <%= ENV['JBZ3_PROD_DATABASE_USERNAME'] %>
   password: <%= ENV['JBZ3_PROD_DATABASE_PASSWORD'] %>
+  socket: /var/run/mysqld/mysqld.sock
