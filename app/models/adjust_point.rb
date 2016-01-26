@@ -5,8 +5,8 @@ class AdjustPoint < ActiveRecord::Base
 
   def process_spdb_api(order)
     # Setup the UAT connection.
-    uat_url = "http://172.30.122.161:8002/spdbcccLife/services/DynamicPsw?wsdl"
-    client = Savon.client(wsdl: uat_url)
+    # uat_url = "http://172.30.122.161:8002/spdbcccLife/services/DynamicPsw?wsdl"
+    client = Savon.client(wsdl: ENV['SPDB_API_URL'])
 
     # 构建数据结构。
     # 6221775500000010 测试卡号。

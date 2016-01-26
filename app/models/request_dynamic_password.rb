@@ -33,8 +33,8 @@ class RequestDynamicPassword < ActiveRecord::Base
       # UAT "http://172.30.122.161:8002/spdbcccLife/services/DynamicPsw?wsdl"
       # PRD "http://172.20.112.73:9000/spdbcccLife/services/DynamicPsw?wsdl"
       # Setup the UAT connection.
-      uat_url = "http://172.30.122.161:8002/spdbcccLife/services/DynamicPsw?wsdl"
-      client = Savon.client(wsdl: uat_url)
+      # uat_url = "http://172.30.122.161:8002/spdbcccLife/services/DynamicPsw?wsdl"
+      client = Savon.client(wsdl: ENV['SPDB_API_URL'])
       # client = Savon.client(wsdl: "http://172.30.122.161:8002/spdbcccLife/services/DynamicPsw?wsdl", encoding: "GBK")
       
       self.request = d_req                                                      # Save the req.

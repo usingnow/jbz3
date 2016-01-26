@@ -49,7 +49,7 @@ test:
 #
 production:
   <<: *default
-  host: 10.1.4.56
-  database: jbz3_production
-  username: root
-  password: <%= ENV['JBZ3_DATABASE_PASSWORD'] %>
+  host: <%= ENV['JBZ3_PROD_HOST_IP'] %>
+  database: <%= ENV['JBZ3_PROD_DATABASE_NAME'] %>
+  username: <%= ENV['JBZ3_PROD_DATABASE_USERNAME'] %>
+  password: <%= ENV['JBZ3_PROD_DATABASE_PASSWORD'] %>
