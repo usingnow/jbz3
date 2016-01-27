@@ -21,7 +21,7 @@ class RequestDynamicPassword < ActiveRecord::Base
     def build_req(creditcard_num, dynamic_key)
       d_req = {
               # cardNo: "6221775500000010",      # 信用卡号，必填
-              cardNo: creditcard_num           # 正式上线
+              cardNo: creditcard_num,           # 正式上线
               password: dynamic_key,           # 动态验证码
               source: "JBZCH"                  # 来源，回传
             }.to_json
