@@ -1,10 +1,15 @@
 class Backend::OrdersController < ApplicationController
   layout 'backend'
 
-
+  before_action :set_order, only: [:show]
 
   def index
     @orders = Order.all.paginate(:page => params[:page], :per_page => 10)
+  end
+
+  def show
+    @request_dynamic_password = @order.request_dynamic_passwords.last
+    @adjust_point = @order.adjust_point
   end
 
   private
