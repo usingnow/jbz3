@@ -20,6 +20,9 @@ gem 'slim-rails'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails', '~> 3.2.0'
 gem 'font-awesome-rails'
+# 分页
+gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

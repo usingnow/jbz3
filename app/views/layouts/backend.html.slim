@@ -1,0 +1,55 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    title= content_for?(:title) ? yield(:title) : "金保证管理界面"
+    = csrf_meta_tags
+    = stylesheet_link_tag "application", :media => "all"
+    = favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144'
+    = favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114'
+    = favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
+    = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
+    = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+    = javascript_include_tag "application"
+    /! Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"
+
+
+  body
+    .navbar.navbar-default.navbar-static-top
+        .container
+          button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse"
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          = link_to '金保证管理界面', backend_dashboard_path, class: 'navbar-brand'
+          .navbar-collapse.collapse.navbar-responsive-collapse
+            ul.nav.navbar-nav
+              li= link_to "待定菜单", "/path1"
+              li= link_to "待定菜单", "/path2"
+              li= link_to "待定菜单", "/path3"
+            ul.nav.navbar-nav.navbar-right
+              li
+                a href="#" current_admin.email
+
+    .container
+      .row
+        .col-lg-10
+          = bootstrap_flash
+          = yield
+        .col-lg-2
+          .panel.panel-default.sidebar-nav
+            .panel-heading 快速导航栏
+            .panel-body
+              ul.nav.nav-list
+                li= link_to "查看订单", backend_orders_path
+                li= link_to "待定功能", "#"
+                li= link_to "待定功能", "#"
+
+      footer
+        p 
+          span.pull-left &copy;金保证财富管理有限公司 2012 - 2016 版权所有
+          span.pull-right Powered by &copy;上海采恪

@@ -45,6 +45,12 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :backend do
+    get 'dashboard' => "dashboard#index"
+
+    resources :orders
+  end
+
     # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

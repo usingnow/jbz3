@@ -1,0 +1,29 @@
+.alert.alert-info 查询所有订单列表
+
+table.table.table-striped.table-responsive
+  thead
+    tr
+      td #
+      td 姓名
+      td 信用卡号
+      td 手机
+      td 订单生成日期
+      td 操作
+  tbody
+    - if @orders
+      - @orders.each do |order|
+        tr
+          td = order.id
+          td = order.name
+          td = order.creditcard_num
+          td = order.cellphone
+          td = order.created_at.to_formatted_s(:db)
+          td
+            = link_to '详细', backend_order_path(order.id)
+            span
+              ' 
+              ' | 待定功能
+    - else
+      .alert.alert-danger 没有任何订单哟！
+
+= will_paginate @orders, renderer: BootstrapPagination::Rails
