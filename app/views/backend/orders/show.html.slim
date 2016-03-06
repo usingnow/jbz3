@@ -1,15 +1,16 @@
-span.alert.alert-info
-  '订单号： 
-  = @order.ref
-span &nbsp
-span.alert.alert-success
-  '订单生成时间：
-  = @order.created_at.to_formatted_s(:db)
-span &nbsp
-span.alert.alert-warning
-  '订单最后修改时间：
-  = @order.updated_at.to_formatted_s(:db)
-hr
+.row
+  .col-xs-12.col-lg-4
+    .alert.alert-info
+      '订单号： 
+      = @order.ref
+  .col-xs-12.col-lg-4
+    .alert.alert-success
+      '订单生成时间：
+      = @order.created_at.to_formatted_s(:db)
+  .col-xs-12.col-lg-4
+    .alert.alert-warning
+      '订单最后修改时间：
+      = @order.updated_at.to_formatted_s(:db)
 
 a.btn.btn-default.disabled href="#" 待定功能区
 span &nbsp
@@ -19,7 +20,7 @@ a.btn.btn-primary.disabled href="#" 待定功能区
 
 hr
 
-h3 所含产品项
+h4 所含产品项
 table.table
   thead
     tr
@@ -55,7 +56,38 @@ table.table
 
 hr
 
-h3 最后一次密码查询记录
+h4 客户信息
+table.table
+  thead
+    tr
+      th 项目
+      th 内容
+  tbody
+    tr
+      th scope="row" 姓名
+      td = @order.name
+    tr
+      th scope="row" 身份证
+      td = @order.id_card
+    tr
+      th scope="row" 出生日期
+      td = birthday_from_id_card_num @order.id_card
+    tr
+      th scope="row" 年龄
+      td = age_from_id_card_num @order.id_card
+    tr
+      th scope="row" 性别
+      td = gender_from_id_card_num @order.id_card
+    tr
+      th scope="row" 赎回银行
+      td = @order.bank
+    tr
+      th scope="row" 赎回账号
+      td = @order.debitcard_num
+
+hr
+
+h4 最近一次密码查询记录
 
 - if @request_dynamic_password
   .alert.alert-success
@@ -69,12 +101,23 @@ h3 最后一次密码查询记录
 
 hr
 
-h3 与浦发扣除积分记录
+h4 与浦发扣除积分记录
 
 - if @adjust_point
-  .alert.alert-success
-    |状态码（000000为正常扣除)：
-    = @adjust_point.status
-  br
-  .alert.alert-info style="word-break:break-all"
-    = @adjust_point.response.to_s
+  - if @adjust_point.status == "000000"
+    .alert.alert-success
+      |状态码：
+      = @adjust_point.status
+      ' 
+      ' - 积分正常扣除
+    br
+    .alert.alert-info style="word-break:break-all"
+      = @adjust_point.response.to_s
+  - else
+    .alert.alert-danger
+      |状态码：
+      = @adjust_point.status
+      ' 
+      ' - 积分未正常扣除
+- else
+  .alert.alert-danger 未搜到积分扣除查询记录
