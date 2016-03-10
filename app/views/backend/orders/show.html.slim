@@ -21,38 +21,39 @@ a.btn.btn-primary.disabled href="#" 待定功能区
 hr
 
 h4 所含产品项
-table.table
-  thead
-    tr
-      td 产品描述
-      td 该单产品数量
-      td 可赎回价格
-      td 赎回时间
-      td 核销时间
-  - if @order.line_items
-    tbody
-    - @order.line_items.each do |item|
+.table-responsive
+  table.table
+    thead
       tr
-        td = item.jbz_sku.title
-        td = item.quantity
-        td = to_money(subtotal(item.jbz_sku.price, item.quantity))
-        td
-          - if item.redeemed_at
-            = item.redeemed_at.to_formatted_s(:db)
-          - else
-            |尚未赎回
-        td
-  - else
-    .alert.alert-danger 该订单没有产品项目！需要与客户复核。
-  tr
-    td
-      p.pull-right 已扣积分：
-    td
-      b = @order.total_reward
-    td
-      b = to_money(@order.total_amount)
-    td
-    td
+        td 产品描述
+        td 该单产品数量
+        td 可赎回价格
+        td 赎回时间
+        td 核销时间
+    - if @order.line_items
+      tbody
+      - @order.line_items.each do |item|
+        tr
+          td = item.jbz_sku.title
+          td = item.quantity
+          td = to_money(subtotal(item.jbz_sku.price, item.quantity))
+          td
+            - if item.redeemed_at
+              = item.redeemed_at.to_formatted_s(:db)
+            - else
+              |尚未赎回
+          td
+    - else
+      .alert.alert-danger 该订单没有产品项目！需要与客户复核。
+    tr
+      td
+        p.pull-right 已扣积分：
+      td
+        b = @order.total_reward
+      td
+        b = to_money(@order.total_amount)
+      td
+      td
 
 hr
 
